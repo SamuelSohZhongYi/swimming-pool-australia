@@ -1,0 +1,23 @@
+name,suburb,lat,lon,disability_access,disability_parking,open_in_winter,heated,indoor_pool,pool_50m,lifeguards,water_play,swim_lessons,public_transport,weekday_open,weekday_close,split_session,n_facilities,phone
+Acacia Ridge Leisure Centre,Acacia Ridge,-27.586159,153.026354,yes,yes,yes,yes,yes,no,yes,yes,yes,yes,6am,7pm,no,10,5610 4938
+Bellbowrie Pool,Bellbowrie,-27.56382,152.889833,yes,yes,no,yes,no,yes,yes,yes,yes,yes,5.30am,7pm,no,11,3432 9172
+Carole Park Pool,Wacol,-27.607464,152.932267,no,yes,no,yes,no,no,yes,yes,yes,yes,5.30am,6pm,yes,8,3271 6116
+Centenary Pool,Spring Hill,-27.4549,153.0261,yes,yes,yes,yes,no,no,no,no,yes,yes,5am,8pm,no,13,3054 4331
+Chermside Aquatic Centre,Chermside,-27.385804,153.036226,yes,yes,yes,yes,yes,no,yes,yes,yes,yes,5am,8pm,no,13,3054 4305
+Colmslie Aquatic Centre,Morningside,-27.453413,153.083054,yes,yes,yes,yes,yes,no,yes,yes,yes,no,5am,8pm,no,11,3054 4366
+Dunlop Park Memorial Swimming Pool,Corinda,-27.547035,152.980863,yes,no,yes,yes,yes,no,yes,yes,yes,yes,5am,7.30pm,no,15,3379 1630
+Emily Seebohm Aquatic Centre,Fitzgibbon,-27.331986,153.042374,yes,yes,yes,yes,yes,no,yes,yes,yes,no,5.00am,7.30pm,no,12,3269 8906
+Hibiscus Sports Complex Pool,Upper Mount Gravatt,-27.55299,153.073094,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,5.30am,8pm,no,9,3054 4374
+Ithaca Pool,Paddington,-27.462686,153.010401,yes,no,no,yes,no,no,no,no,yes,no,5.30am,7pm,no,9,3369 2624
+Jindalee Pool,Jindalee,-27.532559,152.942756,yes,no,yes,yes,yes,yes,yes,yes,yes,yes,5.00am,7.00pm,no,12,3376 1002
+Langlands Park Memorial Pool,Stones Corner,-27.497823,153.049223,yes,yes,yes,yes,yes,yes,yes,yes,no,yes,5am,7.00pm,no,10,3397 7436
+Manly Pool,Manly,-27.453489,153.18749,yes,yes,no,no,no,no,yes,yes,yes,yes,5.30am,7pm,no,9,3396 2578
+Mt Gravatt East Pool,Mansfield,-27.533415,153.094685,yes,yes,yes,yes,yes,no,yes,no,yes,yes,5.30am,7pm,no,10,3216 8730
+Musgrave Park Swimming Centre,South Brisbane,-27.480041,153.016788,yes,yes,yes,yes,no,yes,yes,yes,no,yes,5.00am,7.30pm,no,8,3844 1084
+Newmarket Pool,Newmarket,-27.429758,153.006825,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,5.30am,7pm,no,12,3356 8434
+Parkinson Aquatic Centre,Parkinson,-27.640009,153.038684,yes,yes,yes,yes,yes,yes,yes,no,yes,no,5.30am,8pm,no,9,3054 4385
+Runcorn Pool,Runcorn,-27.591547,153.075667,yes,yes,yes,yes,yes,no,yes,yes,yes,no,5am,7.30pm,no,11,3054 4382
+Sandgate Aquatic Centre,Sandgate,-27.312153,153.069073,yes,yes,yes,yes,yes,yes,yes,yes,no,yes,5am,7.30pm,no,6,3269 7946
+Spring Hill Baths,Springhill,-27.459917,153.02127,no,no,yes,yes,yes,no,yes,no,yes,no,6:30am,7pm,no,6,3054 4359
+Valley Pool,Fortitude Valley,-27.454005,153.036483,yes,no,yes,yes,no,yes,yes,no,yes,yes,5am,7.30pm,no,11,3852 1231
+Yeronga Park Memorial Swimming Pool,Yeronga,-27.520516,153.022386,yes,yes,yes,yes,no,yes,yes,yes,yes,yes,5am,8.00pm,no,14,3848 8575

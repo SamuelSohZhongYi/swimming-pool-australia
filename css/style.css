@@ -1,0 +1,146 @@
+/* ==========================================================================
+   Making a Splash — page styles
+   Colour tokens are shared with the charts (see "config" in each .vg.json)
+   ========================================================================== */
+
+:root {
+  --ink: #12263a;          /* main text: deep pool navy */
+  --ink-soft: #4a5d6e;     /* secondary text */
+  --water: #1f6fb4;        /* primary accent: pool blue */
+  --water-light: #e8f3fb;  /* light tint for backgrounds */
+  --sand: #e8833a;         /* highlight / emphasis: lane-rope orange */
+  --line: #d6e2ea;         /* hairlines, placeholder borders */
+  --paper: #ffffff;
+
+  --font-head: "Fraunces", Georgia, serif;
+  --font-body: "Public Sans", system-ui, -apple-system, sans-serif;
+
+  --measure: 66ch;         /* comfortable line length for body text */
+  --page: 1100px;          /* max page width: fits a small laptop without side-scrolling */
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: var(--page);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Typography ---------- */
+h1, h2, h3 {
+  font-family: var(--font-head);
+  line-height: 1.15;
+  margin: 0 0 0.5em;
+}
+h1 { font-size: clamp(2.8rem, 6vw, 4.5rem); font-weight: 800; letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: 800; }
+h3 { font-size: 1.15rem; font-weight: 600; margin-top: 1.5em; }
+
+.text, .lede { max-width: var(--measure); }
+.text { margin: 0 0 1.5em; }
+strong { font-weight: 700; }
+a { color: var(--water); }
+
+.kicker {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sand);
+  margin: 0 0 0.75em;
+}
+
+.section-num {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--water);
+  margin: 0 0 0.25em;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  background: var(--water-light);
+  padding: 96px 0 0;
+  margin-bottom: 72px;
+}
+.lede { font-size: 1.3rem; line-height: 1.5; margin: 0 0 1em; }
+.byline { color: var(--ink-soft); font-size: 0.95rem; margin: 0 0 56px; }
+
+/* Lane rope: the dashed red-and-white rope that divides pool lanes */
+.lane-rope {
+  height: 10px;
+  background: repeating-linear-gradient(90deg,
+    var(--sand) 0 22px, var(--paper) 22px 30px, var(--water) 30px 52px, var(--paper) 52px 60px);
+}
+
+/* ---------- Sections ---------- */
+main section { margin-bottom: 96px; }
+
+.chart-block { margin: 0 0 40px; }
+.chart { width: 100%; min-height: 120px; }
+
+figcaption {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin-top: 8px;
+  max-width: var(--measure);
+}
+
+/* Two charts side by side, stacking on narrow screens */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+@media (max-width: 760px) {
+  .grid-2 { grid-template-columns: 1fr; }
+}
+
+/* Placeholder box for charts not built yet (remove the class when the chart is added) */
+.placeholder {
+  min-height: 260px;
+  border: 2px dashed var(--line);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  text-align: center;
+}
+.placeholder::before {
+  content: attr(data-label);
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  background: var(--ink);
+  color: #dfe8ef;
+  padding: 64px 0 48px;
+  font-size: 0.95rem;
+}
+.site-footer h2 { color: #fff; font-size: 1.6rem; }
+.site-footer h3 { color: #fff; }
+.site-footer a { color: #8fc3ea; }
+.sources { padding-left: 1.2em; max-width: 80ch; }
+.sources li { margin-bottom: 0.5em; }
+.small { font-size: 0.8rem; color: #9fb0bf; }
+
+/* Hide Vega's tooltip border default and match the page font */
+#vg-tooltip-element {
+  font-family: var(--font-body);
+  font-size: 13px;
+}

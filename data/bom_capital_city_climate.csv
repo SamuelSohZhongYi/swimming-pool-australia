@@ -1,0 +1,97 @@
+city,state_abbr,station_id,station_name,record_years,month,month_num,mean_max_c,mean_min_c,mean_rain_mm
+Sydney,NSW,066062,Sydney (Observatory Hill),1859-2020,Jan,1,26.0,18.8,101.2
+Sydney,NSW,066062,Sydney (Observatory Hill),1859-2020,Feb,2,25.8,18.9,119.3
+Sydney,NSW,066062,Sydney (Observatory Hill),1859-2020,Mar,3,24.8,17.6,131.6
+Sydney,NSW,066062,Sydney (Observatory Hill),1859-2020,Apr,4,22.5,14.8,126.5
+Sydney,NSW,066062,Sydney (Observatory Hill),1859-2020,May,5,19.5,11.6,117.4
+Sydney,NSW,066062,Sydney (Observatory Hill),1859-2020,Jun,6,17.0,9.3,133.1
+Sydney,NSW,066062,Sydney (Observatory Hill),1859-2020,Jul,7,16.4,8.1,96.3
+Sydney,NSW,066062,Sydney (Observatory Hill),1859-2020,Aug,8,17.9,9.0,80.2
+Sydney,NSW,066062,Sydney (Observatory Hill),1859-2020,Sep,9,20.1,11.1,68.1
+Sydney,NSW,066062,Sydney (Observatory Hill),1859-2020,Oct,10,22.2,13.6,76.7
+Sydney,NSW,066062,Sydney (Observatory Hill),1859-2020,Nov,11,23.7,15.7,83.8
+Sydney,NSW,066062,Sydney (Observatory Hill),1859-2020,Dec,12,25.3,17.6,77.1
+Melbourne,VIC,086071,Melbourne Regional Office,1855-2014,Jan,1,25.9,14.3,46.8
+Melbourne,VIC,086071,Melbourne Regional Office,1855-2014,Feb,2,25.9,14.6,48.0
+Melbourne,VIC,086071,Melbourne Regional Office,1855-2014,Mar,3,23.9,13.3,50.1
+Melbourne,VIC,086071,Melbourne Regional Office,1855-2014,Apr,4,20.3,10.8,57.3
+Melbourne,VIC,086071,Melbourne Regional Office,1855-2014,May,5,16.7,8.7,55.7
+Melbourne,VIC,086071,Melbourne Regional Office,1855-2014,Jun,6,14.1,6.9,49.5
+Melbourne,VIC,086071,Melbourne Regional Office,1855-2014,Jul,7,13.5,6.0,47.5
+Melbourne,VIC,086071,Melbourne Regional Office,1855-2014,Aug,8,15.0,6.7,50.0
+Melbourne,VIC,086071,Melbourne Regional Office,1855-2014,Sep,9,17.3,8.0,58.0
+Melbourne,VIC,086071,Melbourne Regional Office,1855-2014,Oct,10,19.7,9.6,66.0
+Melbourne,VIC,086071,Melbourne Regional Office,1855-2014,Nov,11,22.0,11.3,60.3
+Melbourne,VIC,086071,Melbourne Regional Office,1855-2014,Dec,12,24.2,13.0,59.1
+Brisbane,QLD,040913,Brisbane,1999-2026,Jan,1,30.4,21.7,140.0
+Brisbane,QLD,040913,Brisbane,1999-2026,Feb,2,30.2,21.5,171.7
+Brisbane,QLD,040913,Brisbane,1999-2026,Mar,3,29.2,20.3,146.9
+Brisbane,QLD,040913,Brisbane,1999-2026,Apr,4,27.2,17.4,63.3
+Brisbane,QLD,040913,Brisbane,1999-2026,May,5,24.5,13.9,74.5
+Brisbane,QLD,040913,Brisbane,1999-2026,Jun,6,22.1,11.8,56.2
+Brisbane,QLD,040913,Brisbane,1999-2026,Jul,7,22.0,10.5,31.1
+Brisbane,QLD,040913,Brisbane,1999-2026,Aug,8,23.5,11.1,33.3
+Brisbane,QLD,040913,Brisbane,1999-2026,Sep,9,25.7,13.9,27.6
+Brisbane,QLD,040913,Brisbane,1999-2026,Oct,10,27.2,16.6,86.6
+Brisbane,QLD,040913,Brisbane,1999-2026,Nov,11,28.4,18.9,101.8
+Brisbane,QLD,040913,Brisbane,1999-2026,Dec,12,29.7,20.6,137.9
+Adelaide,SA,023000,Adelaide (West Terrace),1887-2026,Jan,1,28.7,16.6,20.1
+Adelaide,SA,023000,Adelaide (West Terrace),1887-2026,Feb,2,28.6,16.8,20.2
+Adelaide,SA,023000,Adelaide (West Terrace),1887-2026,Mar,3,26.1,15.2,23.4
+Adelaide,SA,023000,Adelaide (West Terrace),1887-2026,Apr,4,22.2,12.8,43.3
+Adelaide,SA,023000,Adelaide (West Terrace),1887-2026,May,5,18.6,10.4,67.3
+Adelaide,SA,023000,Adelaide (West Terrace),1887-2026,Jun,6,15.8,8.5,72.4
+Adelaide,SA,023000,Adelaide (West Terrace),1887-2026,Jul,7,15.0,7.6,65.9
+Adelaide,SA,023000,Adelaide (West Terrace),1887-2026,Aug,8,16.1,8.1,61.3
+Adelaide,SA,023000,Adelaide (West Terrace),1887-2026,Sep,9,18.5,9.3,50.0
+Adelaide,SA,023000,Adelaide (West Terrace),1887-2026,Oct,10,21.4,11.2,43.9
+Adelaide,SA,023000,Adelaide (West Terrace),1887-2026,Nov,11,24.4,13.2,31.3
+Adelaide,SA,023000,Adelaide (West Terrace),1887-2026,Dec,12,26.9,15.1,25.9
+Perth,WA,009225,Perth Metro,1994-2026,Jan,1,31.4,18.2,15.9
+Perth,WA,009225,Perth Metro,1994-2026,Feb,2,31.7,18.4,12.5
+Perth,WA,009225,Perth Metro,1994-2026,Mar,3,29.7,16.9,21.6
+Perth,WA,009225,Perth Metro,1994-2026,Apr,4,26.0,13.8,35.2
+Perth,WA,009225,Perth Metro,1994-2026,May,5,22.5,10.6,84.5
+Perth,WA,009225,Perth Metro,1994-2026,Jun,6,19.5,8.7,126.9
+Perth,WA,009225,Perth Metro,1994-2026,Jul,7,18.5,8.1,144.3
+Perth,WA,009225,Perth Metro,1994-2026,Aug,8,19.2,8.5,124.3
+Perth,WA,009225,Perth Metro,1994-2026,Sep,9,20.7,9.7,78.7
+Perth,WA,009225,Perth Metro,1994-2026,Oct,10,23.5,11.7,40.0
+Perth,WA,009225,Perth Metro,1994-2026,Nov,11,26.8,14.4,24.0
+Perth,WA,009225,Perth Metro,1994-2026,Dec,12,29.6,16.6,9.6
+Hobart,TAS,094029,Hobart (Ellerslie Road),1882-2026,Jan,1,21.8,12.1,46.3
+Hobart,TAS,094029,Hobart (Ellerslie Road),1882-2026,Feb,2,21.8,12.1,38.6
+Hobart,TAS,094029,Hobart (Ellerslie Road),1882-2026,Mar,3,20.3,11.0,44.1
+Hobart,TAS,094029,Hobart (Ellerslie Road),1882-2026,Apr,4,17.4,9.0,49.1
+Hobart,TAS,094029,Hobart (Ellerslie Road),1882-2026,May,5,14.6,7.0,47.6
+Hobart,TAS,094029,Hobart (Ellerslie Road),1882-2026,Jun,6,12.1,5.2,53.6
+Hobart,TAS,094029,Hobart (Ellerslie Road),1882-2026,Jul,7,11.8,4.6,51.9
+Hobart,TAS,094029,Hobart (Ellerslie Road),1882-2026,Aug,8,13.2,5.3,53.8
+Hobart,TAS,094029,Hobart (Ellerslie Road),1882-2026,Sep,9,15.2,6.5,52.8
+Hobart,TAS,094029,Hobart (Ellerslie Road),1882-2026,Oct,10,17.0,7.8,62.0
+Hobart,TAS,094029,Hobart (Ellerslie Road),1882-2026,Nov,11,18.8,9.4,54.0
+Hobart,TAS,094029,Hobart (Ellerslie Road),1882-2026,Dec,12,20.4,10.9,56.6
+Darwin,NT,014015,Darwin Airport,1941-2026,Jan,1,31.8,24.9,432.1
+Darwin,NT,014015,Darwin Airport,1941-2026,Feb,2,31.5,24.8,372.4
+Darwin,NT,014015,Darwin Airport,1941-2026,Mar,3,32.0,24.6,313.1
+Darwin,NT,014015,Darwin Airport,1941-2026,Apr,4,32.8,24.1,102.4
+Darwin,NT,014015,Darwin Airport,1941-2026,May,5,32.1,22.2,20.0
+Darwin,NT,014015,Darwin Airport,1941-2026,Jun,6,30.8,20.0,1.8
+Darwin,NT,014015,Darwin Airport,1941-2026,Jul,7,30.7,19.3,1.0
+Darwin,NT,014015,Darwin Airport,1941-2026,Aug,8,31.5,20.3,4.4
+Darwin,NT,014015,Darwin Airport,1941-2026,Sep,9,32.7,23.0,16.7
+Darwin,NT,014015,Darwin Airport,1941-2026,Oct,10,33.4,25.0,69.7
+Darwin,NT,014015,Darwin Airport,1941-2026,Nov,11,33.4,25.4,146.5
+Darwin,NT,014015,Darwin Airport,1941-2026,Dec,12,32.8,25.4,255.5
+Canberra,ACT,070351,Canberra Airport,2008-2026,Jan,1,30.0,14.2,54.4
+Canberra,ACT,070351,Canberra Airport,2008-2026,Feb,2,28.0,13.4,63.5
+Canberra,ACT,070351,Canberra Airport,2008-2026,Mar,3,25.3,11.3,63.6
+Canberra,ACT,070351,Canberra Airport,2008-2026,Apr,4,21.0,6.8,40.5
+Canberra,ACT,070351,Canberra Airport,2008-2026,May,5,16.6,2.5,33.8
+Canberra,ACT,070351,Canberra Airport,2008-2026,Jun,6,13.2,0.9,46.2
+Canberra,ACT,070351,Canberra Airport,2008-2026,Jul,7,12.8,0.1,32.6
+Canberra,ACT,070351,Canberra Airport,2008-2026,Aug,8,14.4,1.2,47.1
+Canberra,ACT,070351,Canberra Airport,2008-2026,Sep,9,18.0,3.1,48.4
+Canberra,ACT,070351,Canberra Airport,2008-2026,Oct,10,21.4,6.2,52.1
+Canberra,ACT,070351,Canberra Airport,2008-2026,Nov,11,24.9,9.8,73.6
+Canberra,ACT,070351,Canberra Airport,2008-2026,Dec,12,27.4,11.9,75.2

@@ -1,0 +1,15 @@
+metric,value,unit,source_report,year
+annual_visits,421343494,visits,State of Australian Aquatic Facilities 2025,2025
+total_facilities,2103,facilities,State of Australian Aquatic Facilities 2025,2025
+people_per_facility_national,12826,people,State of Australian Aquatic Facilities 2025,2025
+public_pools_govt_owned,1306,pools,State of Aquatic Facility Infrastructure 2022,2022
+public_accessible_private,807,pools,State of Aquatic Facility Infrastructure 2022,2022
+avg_year_built_public_pool,1968,year,State of Aquatic Facility Infrastructure 2022,2022
+pools_reaching_end_of_life_this_decade,500,pools,State of Aquatic Facility Infrastructure 2022,2022
+pct_pools_reaching_end_of_life,40,percent,State of Aquatic Facility Infrastructure 2022,2022
+replacement_cost_500_pools,8000000000,AUD,State of Aquatic Facility Infrastructure 2022,2022
+min_cost_replace_outdoor_pool,10000000,AUD,State of Aquatic Facility Infrastructure 2022,2022
+annual_benefit_total,9.1,AUD billion,RLS Social Economic Value placemat,
+annual_benefit_economic,2.8,AUD billion,RLS Social Economic Value placemat,
+annual_benefit_health,2.5,AUD billion,RLS Social Economic Value placemat,
+annual_benefit_social,3.8,AUD billion,RLS Social Economic Value placemat,

@@ -1,0 +1,116 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Chart 6. Choropleth: share of residents with no public pool within a 10-minute drive, by state (2021). Equal-area projection because we compare areas.",
+  "title": {
+    "text": "1 in 4 Australians live more than 10 minutes from a public pool",
+    "subtitle": "Share of residents with no public pool within a 10-minute drive, 2021",
+    "anchor": "start"
+  },
+  "width": "container",
+  "height": 520,
+  "projection": {
+    "type": "conicEqualArea",
+    "parallels": [-18, -36],
+    "rotate": [-132, 0]
+  },
+  "layer": [
+    {
+      "description": "Layer 1: states, coloured by the access rate (joined from the CSV with lookup)",
+      "data": {
+        "url": "data/aus_states.topojson",
+        "format": { "type": "topojson", "feature": "states" }
+      },
+      "transform": [
+        {
+          "lookup": "properties.STATE_NAME",
+          "from": {
+            "data": { "url": "data/rls_pool_access_by_state.csv" },
+            "key": "state",
+            "fields": ["state_abbr", "pct_no_pool_10min_2021", "no_pool_10min_2021", "population_2021"]
+          }
+        }
+      ],
+      "mark": { "type": "geoshape", "stroke": "#ffffff", "strokeWidth": 1.5 },
+      "encoding": {
+        "color": {
+          "field": "pct_no_pool_10min_2021",
+          "type": "quantitative",
+          "title": "No pool within 10 min",
+          "scale": { "domain": [0, 0.6], "range": ["#fdf1e4", "#f2b27a", "#e8833a", "#a3461a"] },
+          "legend": {
+            "format": ".0%",
+            "orient": "bottom-left",
+            "direction": "horizontal",
+            "gradientLength": 200,
+            "titleLimit": 220
+          }
+        },
+        "tooltip": [
+          { "field": "properties.STATE_NAME", "title": "State" },
+          { "field": "pct_no_pool_10min_2021", "type": "quantitative", "title": "Share with no pool within 10 min", "format": ".0%" },
+          { "field": "no_pool_10min_2021", "type": "quantitative", "title": "People with no pool within 10 min", "format": ",.0f" },
+          { "field": "population_2021", "type": "quantitative", "title": "Population (2021)", "format": ",.0f" }
+        ]
+      }
+    },
+    {
+      "description": "Layer 2: state label (abbreviation + percentage), placed inside each state. ACT is too small, so it is labelled separately in layer 3.",
+      "data": { "url": "data/rls_pool_access_by_state.csv" },
+      "transform": [
+        { "filter": "datum.state_abbr != 'ACT'" },
+        { "calculate": "datum.state_abbr + '  ' + format(datum.pct_no_pool_10min_2021, '.0%')", "as": "label" }
+      ],
+      "mark": { "type": "text", "fontSize": 13, "fontWeight": 600, "color": "#12263a" },
+      "encoding": {
+        "longitude": { "field": "label_lon", "type": "quantitative" },
+        "latitude": { "field": "label_lat", "type": "quantitative" },
+        "text": { "field": "label" }
+      }
+    },
+    {
+      "description": "Layer 3: ACT label placed in the sea with a short leader line",
+      "data": { "values": [{ "lon": 149.0, "lat": -35.5, "lon2": 153.6, "lat2": -37.3, "label": "ACT  11%" }] },
+      "layer": [
+        {
+          "mark": { "type": "rule", "color": "#12263a", "strokeWidth": 0.8 },
+          "encoding": {
+            "longitude": { "field": "lon", "type": "quantitative" },
+            "latitude": { "field": "lat", "type": "quantitative" },
+            "longitude2": { "field": "lon2" },
+            "latitude2": { "field": "lat2" }
+          }
+        },
+        {
+          "mark": { "type": "text", "align": "left", "dx": 4, "fontSize": 13, "fontWeight": 600, "color": "#12263a" },
+          "encoding": {
+            "longitude": { "field": "lon2", "type": "quantitative" },
+            "latitude": { "field": "lat2", "type": "quantitative" },
+            "text": { "field": "label" }
+          }
+        }
+      ]
+    },
+    {
+      "description": "Layer 4: annotation explaining the key insight (Tasmania)",
+      "data": {
+        "values": [
+          { "lon": 139.2, "lat": -41.6, "text": "Tasmania: more than half of" },
+          { "lon": 139.2, "lat": -42.9, "text": "residents have no pool nearby," },
+          { "lon": 139.2, "lat": -44.2, "text": "despite having the most pools per person" }
+        ]
+      },
+      "mark": { "type": "text", "align": "right", "fontSize": 12, "fontStyle": "italic", "color": "#a3461a" },
+      "encoding": {
+        "longitude": { "field": "lon", "type": "quantitative" },
+        "latitude": { "field": "lat", "type": "quantitative" },
+        "text": { "field": "text" }
+      }
+    }
+  ],
+  "config": {
+    "view": { "stroke": null },
+    "font": "Public Sans",
+    "title": { "font": "Fraunces", "fontSize": 20, "fontWeight": 800, "color": "#12263a", "subtitleFontSize": 14, "subtitleColor": "#4a5d6e", "offset": 12 },
+    "legend": { "labelFontSize": 12, "titleFontSize": 12, "titleColor": "#4a5d6e", "labelColor": "#4a5d6e" }
+  }
+}
