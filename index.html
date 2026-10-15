@@ -49,7 +49,7 @@
       </p>
       <!-- Chart 1: isotype of annual visits -->
       <figure class="chart-block">
-        <div id="chart_isotype" class="chart placeholder" data-label="Chart 1 · Isotype: 421 million visits a year"></div>
+       <div id="chart_isotype" class="chart"></div>
       </figure>
       <!-- Chart 2: bump chart of activity ranks -->
       <figure class="chart-block">
@@ -227,7 +227,9 @@
     // Add one line per chart as you build it: "#div id": "spec file"
     const charts = {
       "#chart_choropleth": "js/map_access_choropleth.vg.json",
+      "#chart_isotype": "js/isotype_visits.vg.json",
     };
+    
     for (const [div, spec] of Object.entries(charts)) {
       vegaEmbed(div, spec, opts).catch(console.error);
     }

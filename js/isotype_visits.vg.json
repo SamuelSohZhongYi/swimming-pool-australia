@@ -1,0 +1,167 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Chart 1. Isotype: annual pool visits by state. One swimmer = 5 million visits (rounded).",
+  "title": {
+    "text": "421 million pool visits a year",
+    "subtitle": "Annual visits to aquatic facilities by state · each swimmer = 5 million visits"
+  },
+  "width": "container",
+  "height": 300,
+  "data": {
+    "url": "data/rls_facilities_visits_by_state_2025.csv",
+    "format": {
+      "parse": {
+        "annual_visits": "number",
+        "total_facilities": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "calculate": "round(datum.annual_visits / 5000000)",
+      "as": "icons"
+    },
+    {
+      "calculate": "datum.annual_visits / 1000000",
+      "as": "visits_m"
+    },
+    {
+      "calculate": "sequence(0, datum.icons)",
+      "as": "icon_index"
+    },
+    {
+      "flatten": [
+        "icon_index"
+      ]
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "shape": "M -0.55 -0.75 A 0.28 0.28 0 1 1 -0.549 -0.75 Z M -0.95 -0.15 L 0.55 -0.55 L 0.75 -0.3 L -0.75 0.1 Z M -1 0.45 Q -0.75 0.25 -0.5 0.45 Q -0.25 0.65 0 0.45 Q 0.25 0.25 0.5 0.45 Q 0.75 0.65 1 0.45 L 1 0.7 Q 0.75 0.9 0.5 0.7 Q 0.25 0.5 0 0.7 Q -0.25 0.9 -0.5 0.7 Q -0.75 0.5 -1 0.7 Z",
+        "size": 170,
+        "opacity": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "icon_index",
+          "type": "ordinal",
+          "axis": null
+        },
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "title": null,
+          "sort": {
+            "field": "annual_visits",
+            "op": "max",
+            "order": "descending"
+          },
+          "axis": {
+            "labelFontSize": 13,
+            "domain": false,
+            "ticks": false,
+            "labelPadding": 8,
+            "labelLimit": 300
+          }
+        },
+        "color": {
+          "value": "#1f6fb4"
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "title": "State"
+          },
+          {
+            "field": "visits_m",
+            "type": "quantitative",
+            "format": ".1f",
+            "title": "Visits a year (millions)"
+          },
+          {
+            "field": "total_facilities",
+            "type": "quantitative",
+            "title": "Aquatic facilities"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.icon_index == datum.icons - 1"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 14,
+        "fontSize": 12,
+        "color": "#4a5d6e"
+      },
+      "encoding": {
+        "x": {
+          "field": "icon_index",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "sort": {
+            "field": "annual_visits",
+            "op": "max",
+            "order": "descending"
+          }
+        },
+        "text": {
+          "field": "visits_m",
+          "type": "quantitative",
+          "format": ".0f"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Public Sans",
+    "title": {
+      "font": "Fraunces",
+      "fontSize": 20,
+      "fontWeight": 800,
+      "color": "#12263a",
+      "subtitleFontSize": 14,
+      "subtitleColor": "#4a5d6e",
+      "anchor": "start",
+      "offset": 12
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "labelColor": "#4a5d6e",
+      "titleColor": "#4a5d6e",
+      "domainColor": "#c3d1db",
+      "tickColor": "#c3d1db",
+      "gridColor": "#e6edf2",
+      "labelLimit": 300
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleColor": "#4a5d6e",
+      "labelColor": "#4a5d6e",
+      "labelLimit": 400
+    },
+    "header": {
+      "labelFontSize": 13,
+      "labelFont": "Public Sans",
+      "labelFontWeight": 600,
+      "labelColor": "#12263a",
+      "titleFontSize": 0
+    }
+  }
+}
