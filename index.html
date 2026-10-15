@@ -68,7 +68,7 @@
       <!-- Charts 3 and 4: dot map and grid bin map side by side -->
       <div class="grid-2">
         <figure class="chart-block">
-          <div id="chart_dotmap" class="chart placeholder" data-label="Chart 3 · Dot map: every mapped public pool"></div>
+          <div id="chart_dotmap" class="chart"></div>
         </figure>
         <figure class="chart-block">
           <div id="chart_binmap" class="chart placeholder" data-label="Chart 4 · Grid bin map: pool density"></div>
@@ -229,6 +229,7 @@
       "#chart_choropleth": "js/map_access_choropleth.vg.json",
       "#chart_isotype": "js/isotype_visits.vg.json",
       "#chart_bump": "js/bump_activity_rank.vg.json",
+      "#chart_dotmap": "js/map_dot_pools.vg.json",
     };
     
     for (const [div, spec] of Object.entries(charts)) {

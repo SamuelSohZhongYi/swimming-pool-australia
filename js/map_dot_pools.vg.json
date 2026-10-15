@@ -1,0 +1,142 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Chart 3. Dot map: one dot per public pool mapped in OpenStreetMap. A dropdown filters by type.",
+  "title": {
+    "text": "Every mapped public pool",
+    "subtitle": "One dot = one pool or aquatic centre"
+  },
+  "width": "container",
+  "height": 380,
+  "projection": {
+    "type": "conicEqualArea",
+    "parallels": [
+      -18,
+      -36
+    ],
+    "rotate": [
+      -132,
+      0
+    ]
+  },
+  "params": [
+    {
+      "name": "pool_type",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "name": "Show: ",
+        "options": [
+          "All",
+          "Aquatic centre",
+          "Public pool",
+          "Swim school",
+          "Water park",
+          "Ocean or natural pool"
+        ]
+      }
+    }
+  ],
+  "layer": [
+    {
+      "data": {
+        "url": "data/aus_states.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "states"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#eef3f6",
+        "stroke": "#ffffff",
+        "strokeWidth": 1
+      }
+    },
+    {
+      "data": {
+        "url": "data/osm_public_pools.csv"
+      },
+      "transform": [
+        {
+          "filter": "datum.lon > 112 && datum.lon < 154.5 && datum.lat < -9"
+        },
+        {
+          "calculate": "{'aquatic_centre':'Aquatic centre','public_pool':'Public pool','swim_school':'Swim school','water_park':'Water park','ocean_or_natural':'Ocean or natural pool'}[datum.category]",
+          "as": "Type"
+        },
+        {
+          "filter": "pool_type == 'All' || datum.Type == pool_type"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 9,
+        "opacity": 0.6,
+        "color": "#1f6fb4"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "name",
+            "title": "Name"
+          },
+          {
+            "field": "Type"
+          },
+          {
+            "field": "state_abbr",
+            "title": "State"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Public Sans",
+    "title": {
+      "font": "Fraunces",
+      "fontSize": 20,
+      "fontWeight": 800,
+      "color": "#12263a",
+      "subtitleFontSize": 14,
+      "subtitleColor": "#4a5d6e",
+      "anchor": "start",
+      "offset": 12
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "labelColor": "#4a5d6e",
+      "titleColor": "#4a5d6e",
+      "domainColor": "#c3d1db",
+      "tickColor": "#c3d1db",
+      "gridColor": "#e6edf2",
+      "labelLimit": 300
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleColor": "#4a5d6e",
+      "labelColor": "#4a5d6e",
+      "labelLimit": 400
+    },
+    "header": {
+      "labelFontSize": 13,
+      "labelFont": "Public Sans",
+      "labelFontWeight": 600,
+      "labelColor": "#12263a",
+      "titleFontSize": 0
+    }
+  }
+}
