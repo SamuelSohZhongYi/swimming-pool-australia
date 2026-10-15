@@ -53,7 +53,7 @@
       </figure>
       <!-- Chart 2: bump chart of activity ranks -->
       <figure class="chart-block">
-        <div id="chart_bump" class="chart placeholder" data-label="Chart 2 · Bump chart: swimming's rank among adult activities, 2016–2025"></div>
+        <div id="chart_bump" class="chart placeholder" data-label="Chart 2 · Bump chart: swimming's rank among adult activities"></div>
       </figure>
     </section>
 
@@ -76,7 +76,7 @@
       </div>
       <!-- Chart 5: proportional symbol map -->
       <figure class="chart-block">
-        <div id="chart_symbolmap" class="chart placeholder" data-label="Chart 5 · Proportional symbol map: public-owned vs public-accessible pools"></div>
+        <div id="chart_symbolmap" class="chart placeholder" data-label="Chart 5 · Proportional symbol map: who owns the pools"></div>
       </figure>
     </section>
 
@@ -93,8 +93,8 @@
       <figure class="chart-block">
         <div id="chart_choropleth" class="chart"></div>
         <figcaption>
-          Share of residents with no public pool within a 10-minute drive, 2021.
-          Source: Royal Life Saving Society – Australia (2025).
+          Hover over a state for the number of people affected.
+          Source: Royal Life Saving Society – Australia (2025), <em>State of Australian Aquatic Facilities</em>.
         </figcaption>
       </figure>
     </section>
@@ -109,11 +109,11 @@
       </p>
       <!-- Chart 7: heatmap -->
       <figure class="chart-block">
-        <div id="chart_heatmap" class="chart placeholder" data-label="Chart 7 · Heatmap: top 10 activities by age group, 2025"></div>
+        <div id="chart_heatmap" class="chart placeholder" data-label="Chart 7 · Heatmap: top 10 activities by age group"></div>
       </figure>
       <!-- Chart 8: trend line -->
       <figure class="chart-block">
-        <div id="chart_trend" class="chart placeholder" data-label="Chart 8 · Line chart: share of adults who swim, 2016–2025"></div>
+        <div id="chart_trend" class="chart placeholder" data-label="Chart 8 · Line chart: share of adults who swim"></div>
       </figure>
     </section>
 
@@ -127,7 +127,7 @@
       </p>
       <!-- Chart 9: radial small multiples -->
       <figure class="chart-block">
-        <div id="chart_radial" class="chart placeholder" data-label="Chart 9 · Radial charts: monthly temperature in each capital city"></div>
+        <div id="chart_radial" class="chart placeholder" data-label="Chart 9 · Radial charts: monthly temperature by city"></div>
       </figure>
     </section>
 
@@ -140,16 +140,14 @@
         will reach the end of their working life this decade, and replacing them would cost about
         $8 billion (about RM 24 billion).
       </p>
-      <div class="grid-2">
-        <!-- Chart 10: waffle -->
-        <figure class="chart-block">
-          <div id="chart_waffle" class="chart placeholder" data-label="Chart 10 · Waffle chart: share of pools reaching end of life"></div>
-        </figure>
-        <!-- Chart 11: value bar chart -->
-        <figure class="chart-block">
-          <div id="chart_value" class="chart placeholder" data-label="Chart 11 · Bar chart: yearly value of pools to Australia"></div>
-        </figure>
-      </div>
+      <!-- Chart 10: waffle -->
+      <figure class="chart-block">
+        <div id="chart_waffle" class="chart placeholder" data-label="Chart 10 · Waffle chart: pools reaching end of life"></div>
+      </figure>
+      <!-- Chart 11: value bar chart -->
+      <figure class="chart-block">
+        <div id="chart_value" class="chart placeholder" data-label="Chart 11 · Bar chart: value of pools vs replacement cost"></div>
+      </figure>
     </section>
 
     <!-- ============ 7. ZOOM IN: BRISBANE ============ -->
@@ -226,10 +224,13 @@
     // actions: false hides the "..." menu and "Open in Vega Editor" link
     const opts = { actions: false, renderer: "svg" };
 
-    vegaEmbed("#chart_choropleth", "js/map_access_choropleth.vg.json", opts).catch(console.error);
-
-    // Add the other charts here as we build them, e.g.
-    // vegaEmbed("#chart_dotmap", "js/map_dot_pools.vg.json", opts).catch(console.error);
+    // Add one line per chart as you build it: "#div id": "spec file"
+    const charts = {
+      "#chart_choropleth": "js/map_access_choropleth.vg.json",
+    };
+    for (const [div, spec] of Object.entries(charts)) {
+      vegaEmbed(div, spec, opts).catch(console.error);
+    }
   </script>
 </body>
 </html>
