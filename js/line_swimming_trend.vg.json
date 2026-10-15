@@ -1,0 +1,233 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Chart 8. Line chart: share of adults who swim each year, by sex. Lines break where the survey method changed (July 2023).",
+  "title": {
+    "text": "More women swim than men, every year",
+    "subtitle": "Share of adults who swam at least once in the year"
+  },
+  "width": "container",
+  "height": 300,
+  "data": {
+    "url": "data/ausplay_swimming_by_year.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.year != 'CY2025'"
+    },
+    {
+      "fold": [
+        "females_rate",
+        "males_rate"
+      ],
+      "as": [
+        "sex_key",
+        "rate"
+      ]
+    },
+    {
+      "calculate": "datum.sex_key == 'females_rate' ? 'Women' : 'Men'",
+      "as": "Sex"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "title": null,
+      "axis": {
+        "labelAngle": 0
+      }
+    },
+    "y": {
+      "field": "rate",
+      "type": "quantitative",
+      "title": null,
+      "axis": {
+        "format": ".0%",
+        "tickCount": 5
+      },
+      "scale": {
+        "domain": [
+          0,
+          0.25
+        ]
+      }
+    }
+  },
+  "layer": [
+    {
+      "data": {
+        "values": [
+          {
+            "year": "2022–23"
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "strokeDash": [
+          4,
+          4
+        ],
+        "color": "#c9d3db"
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "bandPosition": 1
+        },
+        "y": null
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "year": "2019–20",
+            "t": "COVID-19: more people swam in 2020–21"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dy": -10,
+        "fontSize": 11,
+        "fontStyle": "italic",
+        "color": "#4a5d6e"
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal"
+        },
+        "y": {
+          "value": 6
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "year": "2022–23",
+            "t": "New survey method →"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": 40,
+        "fontSize": 11,
+        "fontStyle": "italic",
+        "color": "#4a5d6e"
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "bandPosition": 1
+        },
+        "y": {
+          "value": 290
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3,
+        "point": {
+          "size": 60,
+          "filled": true
+        }
+      },
+      "encoding": {
+        "color": {
+          "field": "Sex",
+          "type": "nominal",
+          "title": null,
+          "scale": {
+            "domain": [
+              "Women",
+              "Men"
+            ],
+            "range": [
+              "#e8833a",
+              "#1f6fb4"
+            ]
+          },
+          "legend": {
+            "orient": "top-right"
+          }
+        },
+        "detail": {
+          "field": "series"
+        },
+        "tooltip": [
+          {
+            "field": "year",
+            "title": "Year"
+          },
+          {
+            "field": "Sex"
+          },
+          {
+            "field": "rate",
+            "type": "quantitative",
+            "format": ".1%",
+            "title": "Adults who swim"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Public Sans",
+    "title": {
+      "font": "Fraunces",
+      "fontSize": 20,
+      "fontWeight": 800,
+      "color": "#12263a",
+      "subtitleFontSize": 14,
+      "subtitleColor": "#4a5d6e",
+      "anchor": "start",
+      "offset": 12
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "labelColor": "#4a5d6e",
+      "titleColor": "#4a5d6e",
+      "domainColor": "#c3d1db",
+      "tickColor": "#c3d1db",
+      "gridColor": "#e6edf2",
+      "labelLimit": 300
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleColor": "#4a5d6e",
+      "labelColor": "#4a5d6e",
+      "labelLimit": 400
+    },
+    "header": {
+      "labelFontSize": 13,
+      "labelFont": "Public Sans",
+      "labelFontWeight": 600,
+      "labelColor": "#12263a",
+      "titleFontSize": 0
+    }
+  }
+}
