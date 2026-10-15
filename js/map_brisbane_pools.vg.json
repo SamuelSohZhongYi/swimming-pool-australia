@@ -1,0 +1,244 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Chart 12. Dot map with filters: Brisbane City Council's 22 pools. Tick boxes highlight pools that match.",
+  "title": {
+    "text": "Find a pool in Brisbane",
+    "subtitle": "Brisbane City Council's 22 pools · tick a box to highlight pools that match"
+  },
+  "width": "container",
+  "height": 480,
+  "projection": {
+    "type": "mercator"
+  },
+  "params": [
+    {
+      "name": "need_access",
+      "value": false,
+      "bind": {
+        "input": "checkbox",
+        "name": "Disability access "
+      }
+    },
+    {
+      "name": "need_winter",
+      "value": false,
+      "bind": {
+        "input": "checkbox",
+        "name": "Open in winter "
+      }
+    },
+    {
+      "name": "need_50m",
+      "value": false,
+      "bind": {
+        "input": "checkbox",
+        "name": "Has a 50 m pool "
+      }
+    },
+    {
+      "name": "need_transport",
+      "value": false,
+      "bind": {
+        "input": "checkbox",
+        "name": "Reachable by public transport "
+      }
+    }
+  ],
+  "layer": [
+    {
+      "data": {
+        "url": "data/brisbane_land.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "land"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#eef3f6",
+        "stroke": "#c9d3db"
+      }
+    },
+    {
+      "data": {
+        "url": "data/brisbane_council_pools.csv"
+      },
+      "transform": [
+        {
+          "calculate": "(!need_access || datum.disability_access == 'yes') && (!need_winter || datum.open_in_winter == 'yes') && (!need_50m || datum.pool_50m == 'yes') && (!need_transport || datum.public_transport == 'yes')",
+          "as": "match"
+        },
+        {
+          "calculate": "datum.weekday_open + ' – ' + datum.weekday_close",
+          "as": "hours"
+        }
+      ],
+      "layer": [
+        {
+          "mark": {
+            "type": "circle",
+            "stroke": "white",
+            "strokeWidth": 1.5
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "size": {
+              "condition": {
+                "test": "datum.match",
+                "value": 260
+              },
+              "value": 90
+            },
+            "color": {
+              "condition": {
+                "test": "datum.match",
+                "value": "#1f6fb4"
+              },
+              "value": "#c9d3db"
+            },
+            "tooltip": [
+              {
+                "field": "name",
+                "title": "Pool"
+              },
+              {
+                "field": "suburb",
+                "title": "Suburb"
+              },
+              {
+                "field": "hours",
+                "title": "Monday hours (summer)"
+              },
+              {
+                "field": "disability_access",
+                "title": "Disability access"
+              },
+              {
+                "field": "open_in_winter",
+                "title": "Open in winter"
+              },
+              {
+                "field": "pool_50m",
+                "title": "50 m pool"
+              },
+              {
+                "field": "heated",
+                "title": "Heated"
+              },
+              {
+                "field": "public_transport",
+                "title": "Public transport"
+              }
+            ]
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "(need_access || need_winter || need_50m || need_transport) && datum.match"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 10,
+            "fontSize": 10.5,
+            "color": "#12263a"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "name"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 153.02,
+            "lat": -27.47,
+            "t": "Brisbane CBD"
+          }
+        ]
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "point",
+            "shape": "cross",
+            "filled": true,
+            "size": 80,
+            "color": "#12263a"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Public Sans",
+    "title": {
+      "font": "Fraunces",
+      "fontSize": 20,
+      "fontWeight": 800,
+      "color": "#12263a",
+      "subtitleFontSize": 14,
+      "subtitleColor": "#4a5d6e",
+      "anchor": "start",
+      "offset": 12
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "labelColor": "#4a5d6e",
+      "titleColor": "#4a5d6e",
+      "domainColor": "#c3d1db",
+      "tickColor": "#c3d1db",
+      "gridColor": "#e6edf2",
+      "labelLimit": 300
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleColor": "#4a5d6e",
+      "labelColor": "#4a5d6e",
+      "labelLimit": 400
+    },
+    "header": {
+      "labelFontSize": 13,
+      "labelFont": "Public Sans",
+      "labelFontWeight": 600,
+      "labelColor": "#12263a",
+      "titleFontSize": 0
+    }
+  }
+}
