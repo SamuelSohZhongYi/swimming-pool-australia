@@ -1,0 +1,192 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Chart 11. Bar chart: yearly economic, health and social value of Australia's aquatic facilities, compared with the one-off cost of replacing 500 ageing pools.",
+  "title": {
+    "text": "Pools give back more than they cost",
+    "subtitle": "Billions of Australian dollars (RM ≈ 3 × AUD)"
+  },
+  "width": "container",
+  "height": 200,
+  "data": {
+    "values": [
+      {
+        "item": "Yearly value to Australia",
+        "part": "Social",
+        "aud_b": 3.8,
+        "order": 1
+      },
+      {
+        "item": "Yearly value to Australia",
+        "part": "Economic",
+        "aud_b": 2.8,
+        "order": 2
+      },
+      {
+        "item": "Yearly value to Australia",
+        "part": "Health",
+        "aud_b": 2.5,
+        "order": 3
+      },
+      {
+        "item": "One-off cost to replace 500 ageing pools",
+        "part": "Replacement cost",
+        "aud_b": 8.0,
+        "order": 4
+      }
+    ]
+  },
+  "encoding": {
+    "y": {
+      "field": "item",
+      "type": "nominal",
+      "title": null,
+      "sort": [
+        "Yearly value to Australia",
+        "One-off cost to replace 500 ageing pools"
+      ],
+      "axis": {
+        "labelLimit": 300,
+        "domain": false,
+        "ticks": false,
+        "labelFontSize": 12
+      }
+    },
+    "x": {
+      "field": "aud_b",
+      "type": "quantitative",
+      "aggregate": "sum",
+      "stack": "zero",
+      "title": "AUD billion",
+      "axis": {
+        "grid": true,
+        "tickCount": 5
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "height": 34,
+        "stroke": "white",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "color": {
+          "field": "part",
+          "type": "nominal",
+          "title": null,
+          "scale": {
+            "domain": [
+              "Social",
+              "Economic",
+              "Health",
+              "Replacement cost"
+            ],
+            "range": [
+              "#1f5f9c",
+              "#3482c3",
+              "#6aaad8",
+              "#e8833a"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "columns": 4
+          }
+        },
+        "order": {
+          "field": "order"
+        },
+        "tooltip": [
+          {
+            "field": "item",
+            "title": "Item"
+          },
+          {
+            "field": "part",
+            "title": "Part"
+          },
+          {
+            "field": "aud_b",
+            "type": "quantitative",
+            "format": ".1f",
+            "title": "AUD billion"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "color": "white",
+        "fontWeight": 600,
+        "fontSize": 12
+      },
+      "transform": [
+        {
+          "calculate": "datum.part + ' $' + format(datum.aud_b, '.1f') + 'b'",
+          "as": "lab"
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "aud_b",
+          "type": "quantitative",
+          "aggregate": "sum",
+          "stack": "zero",
+          "bandPosition": 0.5
+        },
+        "detail": {
+          "field": "part"
+        },
+        "order": {
+          "field": "order"
+        },
+        "text": {
+          "field": "lab"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Public Sans",
+    "title": {
+      "font": "Fraunces",
+      "fontSize": 20,
+      "fontWeight": 800,
+      "color": "#12263a",
+      "subtitleFontSize": 14,
+      "subtitleColor": "#4a5d6e",
+      "anchor": "start",
+      "offset": 12
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "labelColor": "#4a5d6e",
+      "titleColor": "#4a5d6e",
+      "domainColor": "#c3d1db",
+      "tickColor": "#c3d1db",
+      "gridColor": "#e6edf2",
+      "labelLimit": 300
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleColor": "#4a5d6e",
+      "labelColor": "#4a5d6e",
+      "labelLimit": 400
+    },
+    "header": {
+      "labelFontSize": 13,
+      "labelFont": "Public Sans",
+      "labelFontWeight": 600,
+      "labelColor": "#12263a",
+      "titleFontSize": 0
+    }
+  }
+}
