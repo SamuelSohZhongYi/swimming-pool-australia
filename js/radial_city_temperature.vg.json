@@ -1,0 +1,161 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Chart 9. Radial charts (small multiples): average daily maximum temperature for each month in the eight capital cities. Months run clockwise from January at the top; the bar length shows temperature.",
+  "title": {
+    "text": "Darwin swims all year; Hobart has a short season",
+    "subtitle": "Average daily maximum temperature by month · months clockwise from January at the top · orange = 25 °C or warmer"
+  },
+  "data": {
+    "url": "data/bom_capital_city_climate.csv",
+    "format": {
+      "parse": {
+        "month_num": "number",
+        "mean_max_c": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "calculate": "datum.month_num - 1",
+      "as": "a0"
+    },
+    {
+      "calculate": "datum.month_num",
+      "as": "a1"
+    }
+  ],
+  "facet": {
+    "field": "city",
+    "type": "nominal",
+    "title": null,
+    "sort": [
+      "Darwin",
+      "Brisbane",
+      "Perth",
+      "Adelaide",
+      "Sydney",
+      "Canberra",
+      "Melbourne",
+      "Hobart"
+    ]
+  },
+  "columns": 4,
+  "spec": {
+    "width": 150,
+    "height": 150,
+    "layer": [
+      {
+        "mark": {
+          "type": "arc",
+          "innerRadius": 12,
+          "stroke": "white",
+          "strokeWidth": 1,
+          "padAngle": 0.02
+        },
+        "encoding": {
+          "theta": {
+            "field": "a0",
+            "type": "quantitative",
+            "scale": {
+              "domain": [
+                0,
+                12
+              ],
+              "range": [
+                0,
+                6.2832
+              ]
+            }
+          },
+          "theta2": {
+            "field": "a1"
+          },
+          "radius": {
+            "field": "mean_max_c",
+            "type": "quantitative",
+            "scale": {
+              "type": "sqrt",
+              "domain": [
+                0,
+                35
+              ],
+              "range": [
+                12,
+                72
+              ],
+              "zero": true
+            }
+          },
+          "color": {
+            "condition": {
+              "test": "datum.mean_max_c >= 25",
+              "value": "#e8833a"
+            },
+            "value": "#a8cde9"
+          },
+          "tooltip": [
+            {
+              "field": "city",
+              "title": "City"
+            },
+            {
+              "field": "month",
+              "title": "Month"
+            },
+            {
+              "field": "mean_max_c",
+              "type": "quantitative",
+              "format": ".1f",
+              "title": "Avg max °C"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "resolve": {
+    "scale": {
+      "radius": "shared"
+    }
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Public Sans",
+    "title": {
+      "font": "Fraunces",
+      "fontSize": 20,
+      "fontWeight": 800,
+      "color": "#12263a",
+      "subtitleFontSize": 14,
+      "subtitleColor": "#4a5d6e",
+      "anchor": "start",
+      "offset": 12
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "labelColor": "#4a5d6e",
+      "titleColor": "#4a5d6e",
+      "domainColor": "#c3d1db",
+      "tickColor": "#c3d1db",
+      "gridColor": "#e6edf2",
+      "labelLimit": 300
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleColor": "#4a5d6e",
+      "labelColor": "#4a5d6e",
+      "labelLimit": 400
+    },
+    "header": {
+      "labelFontSize": 13,
+      "labelFont": "Public Sans",
+      "labelFontWeight": 600,
+      "labelColor": "#12263a",
+      "titleFontSize": 0
+    }
+  }
+}
