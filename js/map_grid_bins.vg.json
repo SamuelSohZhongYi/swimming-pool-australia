@@ -1,0 +1,172 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Chart 4. Grid bin map: pools counted in 1° x 1° grid cells (about 100 km), so crowded cities can be compared with the outback.",
+  "title": {
+    "text": "Where pools cluster",
+    "subtitle": "Number of pools in each 1° grid cell (about 100 km across)"
+  },
+  "width": "container",
+  "height": 380,
+  "projection": {
+    "type": "conicEqualArea",
+    "parallels": [
+      -18,
+      -36
+    ],
+    "rotate": [
+      -132,
+      0
+    ]
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/aus_states.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "states"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#eef3f6",
+        "stroke": "#ffffff",
+        "strokeWidth": 1
+      }
+    },
+    {
+      "data": {
+        "url": "data/osm_public_pools.csv"
+      },
+      "transform": [
+        {
+          "filter": "datum.category != 'ocean_or_natural'"
+        },
+        {
+          "filter": "datum.lon > 112 && datum.lon < 154.5 && datum.lat < -9"
+        },
+        {
+          "calculate": "floor(datum.lon) + 0.5",
+          "as": "cell_lon"
+        },
+        {
+          "calculate": "floor(datum.lat) + 0.5",
+          "as": "cell_lat"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "count",
+              "as": "pools"
+            }
+          ],
+          "groupby": [
+            "cell_lon",
+            "cell_lat"
+          ]
+        }
+      ],
+      "mark": {
+        "type": "square",
+        "opacity": 1,
+        "size": {
+          "expr": "pow(width / 44, 2)"
+        }
+      },
+      "encoding": {
+        "longitude": {
+          "field": "cell_lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "cell_lat",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "pools",
+          "type": "quantitative",
+          "title": "Pools per cell",
+          "scale": {
+            "type": "threshold",
+            "domain": [
+              2,
+              5,
+              10,
+              25,
+              50
+            ],
+            "range": [
+              "#d6e8f5",
+              "#a8cde9",
+              "#6aaad8",
+              "#3482c3",
+              "#1f5f9c",
+              "#0b3a66"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "labelExpr": "datum.label"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "pools",
+            "title": "Pools in this cell"
+          },
+          {
+            "field": "cell_lat",
+            "title": "Latitude",
+            "format": ".1f"
+          },
+          {
+            "field": "cell_lon",
+            "title": "Longitude",
+            "format": ".1f"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Public Sans",
+    "title": {
+      "font": "Fraunces",
+      "fontSize": 20,
+      "fontWeight": 800,
+      "color": "#12263a",
+      "subtitleFontSize": 14,
+      "subtitleColor": "#4a5d6e",
+      "anchor": "start",
+      "offset": 12
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "labelColor": "#4a5d6e",
+      "titleColor": "#4a5d6e",
+      "domainColor": "#c3d1db",
+      "tickColor": "#c3d1db",
+      "gridColor": "#e6edf2",
+      "labelLimit": 300
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleColor": "#4a5d6e",
+      "labelColor": "#4a5d6e",
+      "labelLimit": 400
+    },
+    "header": {
+      "labelFontSize": 13,
+      "labelFont": "Public Sans",
+      "labelFontWeight": 600,
+      "labelColor": "#12263a",
+      "titleFontSize": 0
+    }
+  }
+}
