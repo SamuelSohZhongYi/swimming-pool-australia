@@ -1,0 +1,113 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Chart 10. Waffle chart: of every 100 public pools, 40 reach the end of their working life this decade.",
+  "title": {
+    "text": "4 in 10 public pools are wearing out",
+    "subtitle": "Each square = 1% of Australia's ~1,300 public pools"
+  },
+  "width": 300,
+  "height": 300,
+  "data": {
+    "sequence": {
+      "start": 0,
+      "stop": 100,
+      "as": "i"
+    }
+  },
+  "transform": [
+    {
+      "calculate": "datum.i % 10",
+      "as": "col"
+    },
+    {
+      "calculate": "floor(datum.i / 10)",
+      "as": "row"
+    },
+    {
+      "calculate": "datum.i < 40 ? 'Reaching end of life by 2030 (about 500 pools)' : 'Still in working life'",
+      "as": "Status"
+    }
+  ],
+  "mark": {
+    "type": "square",
+    "size": 520,
+    "opacity": 1
+  },
+  "encoding": {
+    "x": {
+      "field": "col",
+      "type": "ordinal",
+      "axis": null
+    },
+    "y": {
+      "field": "row",
+      "type": "ordinal",
+      "axis": null
+    },
+    "color": {
+      "field": "Status",
+      "type": "nominal",
+      "title": null,
+      "scale": {
+        "domain": [
+          "Reaching end of life by 2030 (about 500 pools)",
+          "Still in working life"
+        ],
+        "range": [
+          "#e8833a",
+          "#a8cde9"
+        ]
+      },
+      "legend": {
+        "orient": "bottom",
+        "direction": "vertical",
+        "labelLimit": 320
+      }
+    },
+    "tooltip": [
+      {
+        "field": "Status"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Public Sans",
+    "title": {
+      "font": "Fraunces",
+      "fontSize": 20,
+      "fontWeight": 800,
+      "color": "#12263a",
+      "subtitleFontSize": 14,
+      "subtitleColor": "#4a5d6e",
+      "anchor": "start",
+      "offset": 12
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "labelColor": "#4a5d6e",
+      "titleColor": "#4a5d6e",
+      "domainColor": "#c3d1db",
+      "tickColor": "#c3d1db",
+      "gridColor": "#e6edf2",
+      "labelLimit": 300
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleColor": "#4a5d6e",
+      "labelColor": "#4a5d6e",
+      "labelLimit": 400
+    },
+    "header": {
+      "labelFontSize": 13,
+      "labelFont": "Public Sans",
+      "labelFontWeight": 600,
+      "labelColor": "#12263a",
+      "titleFontSize": 0
+    }
+  }
+}
