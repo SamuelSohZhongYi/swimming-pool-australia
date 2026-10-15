@@ -1,0 +1,297 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Chart 2. Bump chart: rank of the six most popular adult activities each year. The survey method changed in July 2023, so the lines break there.",
+  "title": {
+    "text": "Swimming is always one of Australia's top five activities",
+    "subtitle": "Rank by share of adults taking part at least once a year (1 = most popular)"
+  },
+  "width": "container",
+  "height": 320,
+  "data": {
+    "url": "data/ausplay_activity_ranks.csv"
+  },
+  "transform": [
+    {
+      "filter": {
+        "field": "activity",
+        "oneOf": [
+          "Walking",
+          "Fitness/gym",
+          "Running/athletics",
+          "Swimming",
+          "Cycling",
+          "Bushwalking"
+        ]
+      }
+    },
+    {
+      "window": [
+        {
+          "op": "rank",
+          "as": "rank6"
+        }
+      ],
+      "groupby": [
+        "year"
+      ],
+      "sort": [
+        {
+          "field": "participation_rate",
+          "order": "descending"
+        }
+      ]
+    },
+    {
+      "calculate": "datum.activity == 'Swimming' ? 'Swimming' : 'Other'",
+      "as": "is_swim"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "title": null,
+      "axis": {
+        "labelAngle": 0,
+        "domain": false,
+        "ticks": false
+      }
+    },
+    "y": {
+      "field": "rank6",
+      "type": "ordinal",
+      "title": "Rank",
+      "axis": {
+        "domain": false,
+        "ticks": false
+      }
+    }
+  },
+  "layer": [
+    {
+      "data": {
+        "values": [
+          {
+            "year": "2022–23"
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "strokeDash": [
+          4,
+          4
+        ],
+        "color": "#c9d3db",
+        "xOffset": {
+          "expr": "bandwidth('x')/2 + 0"
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "bandPosition": 1
+        },
+        "y": {
+          "value": 0
+        },
+        "y2": {
+          "value": {
+            "expr": "height"
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "year": "2022–23",
+            "t": "Survey changed from phone to online →"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": 0,
+        "dy": -8,
+        "fontSize": 11,
+        "fontStyle": "italic",
+        "color": "#4a5d6e"
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "bandPosition": 1
+        },
+        "y": {
+          "value": 0
+        },
+        "text": {
+          "field": "t"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3,
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "detail": [
+          {
+            "field": "activity"
+          },
+          {
+            "field": "series"
+          }
+        ],
+        "color": {
+          "field": "is_swim",
+          "scale": {
+            "domain": [
+              "Swimming",
+              "Other"
+            ],
+            "range": [
+              "#1f6fb4",
+              "#c9d3db"
+            ]
+          },
+          "legend": null
+        },
+        "order": {
+          "field": "year"
+        },
+        "strokeWidth": {
+          "condition": {
+            "test": "datum.activity == 'Swimming'",
+            "value": 4.5
+          },
+          "value": 2
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 120,
+        "opacity": 1,
+        "stroke": "white",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "color": {
+          "field": "is_swim",
+          "scale": {
+            "domain": [
+              "Swimming",
+              "Other"
+            ],
+            "range": [
+              "#1f6fb4",
+              "#c9d3db"
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "year",
+            "title": "Year"
+          },
+          {
+            "field": "activity",
+            "title": "Activity"
+          },
+          {
+            "field": "rank6",
+            "title": "Rank"
+          },
+          {
+            "field": "participation_rate",
+            "type": "quantitative",
+            "format": ".1%",
+            "title": "Adults taking part"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == '2024–25'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 12,
+        "fontSize": 12
+      },
+      "encoding": {
+        "text": {
+          "field": "activity"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.activity == 'Swimming'",
+            "value": "#1f6fb4"
+          },
+          "value": "#4a5d6e"
+        },
+        "fontWeight": {
+          "condition": {
+            "test": "datum.activity == 'Swimming'",
+            "value": 700
+          },
+          "value": 400
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Public Sans",
+    "title": {
+      "font": "Fraunces",
+      "fontSize": 20,
+      "fontWeight": 800,
+      "color": "#12263a",
+      "subtitleFontSize": 14,
+      "subtitleColor": "#4a5d6e",
+      "anchor": "start",
+      "offset": 12
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "labelColor": "#4a5d6e",
+      "titleColor": "#4a5d6e",
+      "domainColor": "#c3d1db",
+      "tickColor": "#c3d1db",
+      "gridColor": "#e6edf2",
+      "labelLimit": 300
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleColor": "#4a5d6e",
+      "labelColor": "#4a5d6e",
+      "labelLimit": 400
+    },
+    "header": {
+      "labelFontSize": 13,
+      "labelFont": "Public Sans",
+      "labelFontWeight": 600,
+      "labelColor": "#12263a",
+      "titleFontSize": 0
+    }
+  }
+}

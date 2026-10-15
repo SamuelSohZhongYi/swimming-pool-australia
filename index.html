@@ -53,7 +53,7 @@
       </figure>
       <!-- Chart 2: bump chart of activity ranks -->
       <figure class="chart-block">
-        <div id="chart_bump" class="chart placeholder" data-label="Chart 2 · Bump chart: swimming's rank among adult activities"></div>
+        <div id="chart_bump" class="chart"></div>
       </figure>
     </section>
 
@@ -228,6 +228,7 @@
     const charts = {
       "#chart_choropleth": "js/map_access_choropleth.vg.json",
       "#chart_isotype": "js/isotype_visits.vg.json",
+      "#chart_bump": "js/bump_activity_rank.vg.json",
     };
     
     for (const [div, spec] of Object.entries(charts)) {
