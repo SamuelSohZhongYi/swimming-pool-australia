@@ -1,0 +1,176 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Chart 7. Heatmap: share of each age group taking part in Australia's ten most popular adult activities, 2025.",
+  "title": {
+    "text": "Swimming stays popular until 65",
+    "subtitle": "Share of each age group taking part at least once in 2025 · top 10 adult activities"
+  },
+  "width": "container",
+  "height": 380,
+  "data": {
+    "url": "data/ausplay_age_activity_2025.csv",
+    "format": {
+      "parse": {
+        "overall_rank": "number",
+        "participation_rate": "number"
+      }
+    }
+  },
+  "encoding": {
+    "x": {
+      "field": "age_group",
+      "type": "ordinal",
+      "title": "Age group",
+      "sort": [
+        "15-17",
+        "18-24",
+        "25-34",
+        "35-44",
+        "45-54",
+        "55-64",
+        "65+"
+      ],
+      "axis": {
+        "orient": "top",
+        "labelAngle": 0,
+        "domain": false,
+        "ticks": false
+      }
+    },
+    "y": {
+      "field": "activity",
+      "type": "nominal",
+      "title": null,
+      "sort": {
+        "field": "overall_rank"
+      },
+      "axis": {
+        "domain": false,
+        "ticks": false,
+        "labelFontWeight": {
+          "expr": "datum.value == 'Swimming' ? 700 : 400"
+        },
+        "labelColor": {
+          "expr": "datum.value == 'Swimming' ? '#1f6fb4' : '#4a5d6e'"
+        }
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": "white",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "color": {
+          "field": "participation_rate",
+          "type": "quantitative",
+          "title": "Taking part",
+          "scale": {
+            "scheme": "blues",
+            "domain": [
+              0,
+              0.6
+            ]
+          },
+          "legend": {
+            "format": ".0%",
+            "orient": "right",
+            "gradientLength": 200
+          }
+        },
+        "tooltip": [
+          {
+            "field": "activity",
+            "title": "Activity"
+          },
+          {
+            "field": "age_group",
+            "title": "Age"
+          },
+          {
+            "field": "participation_rate",
+            "type": "quantitative",
+            "format": ".1%",
+            "title": "Taking part"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 11
+      },
+      "encoding": {
+        "text": {
+          "field": "participation_rate",
+          "type": "quantitative",
+          "format": ".0%"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.participation_rate > 0.3",
+            "value": "white"
+          },
+          "value": "#12263a"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.activity == 'Swimming'"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "fill": null,
+        "stroke": "#e8833a",
+        "strokeWidth": 2.5
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "font": "Public Sans",
+    "title": {
+      "font": "Fraunces",
+      "fontSize": 20,
+      "fontWeight": 800,
+      "color": "#12263a",
+      "subtitleFontSize": 14,
+      "subtitleColor": "#4a5d6e",
+      "anchor": "start",
+      "offset": 12
+    },
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "labelColor": "#4a5d6e",
+      "titleColor": "#4a5d6e",
+      "domainColor": "#c3d1db",
+      "tickColor": "#c3d1db",
+      "gridColor": "#e6edf2",
+      "labelLimit": 300
+    },
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 12,
+      "titleColor": "#4a5d6e",
+      "labelColor": "#4a5d6e",
+      "labelLimit": 400
+    },
+    "header": {
+      "labelFontSize": 13,
+      "labelFont": "Public Sans",
+      "labelFontWeight": 600,
+      "labelColor": "#12263a",
+      "titleFontSize": 0
+    }
+  }
+}
