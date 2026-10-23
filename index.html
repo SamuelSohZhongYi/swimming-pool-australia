@@ -1,6 +1,21 @@
 <!DOCTYPE html>
+<!--
+  Making a Splash: Public Swimming Pools Across Australia
+  ------------------------------------------------------
+  One scrolling page that tells a data story in 8 sections.
+  How it works:
+    1. This HTML file gives the page structure: headings, story text and an empty
+       <div id="chart_..."> placeholder for each of the 12 charts.
+    2. css/style.css handles layout, fonts and colours.
+    3. Each chart is a Vega-Lite specification (a JSON file in js/) that describes
+       the data, transforms, marks and encodings.
+    4. The <script> at the bottom uses vega-embed to load each spec and draw it
+       inside its matching placeholder <div>.
+  See js/README.md for a walkthrough of every chart spec.
+-->
 <html lang="en">
 <head>
+  <!-- Basic page metadata. The viewport tag makes the layout scale on phones. -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Making a Splash: Public Swimming Pools Across Australia</title>
@@ -12,16 +27,23 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
+  <!-- Our own stylesheet: page layout, the hero banner, section spacing and chart containers -->
   <link rel="stylesheet" href="css/style.css">
 
-  <!-- Vega, Vega-Lite and vega-embed -->
+  <!-- Charting libraries, loaded from the jsDelivr CDN (major versions pinned):
+       - vega:       the low-level rendering engine that draws the charts
+       - vega-lite:  the high-level grammar our specs are written in; it compiles to Vega
+       - vega-embed: a helper that fetches a spec file and draws it into a <div> -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 </head>
 <body>
 
-  <!-- ============ HERO ============ -->
+  <!-- ============ HERO ============
+       Title banner: kicker, main headline, lede (key number that hooks the reader) and byline.
+       .lane-rope is a purely decorative stripe styled in CSS to look like a pool lane rope;
+       aria-hidden hides it from screen readers. -->
   <header class="hero">
     <div class="wrap">
       <p class="kicker">A data story about Australia's public pools</p>
@@ -36,6 +58,9 @@
     <div class="lane-rope" aria-hidden="true"></div>
   </header>
 
+  <!-- <main> holds the story. Each <section> has the same pattern:
+       section number, heading, a short paragraph, then one or more <figure> charts.
+       class="wrap" limits the width so lines of text stay easy to read. -->
   <main>
 
     <!-- ============ 1. A SWIMMING NATION ============ -->
@@ -47,6 +72,9 @@
         usually a <em>kolam renang awam</em> run by the local council (<em>majlis</em>). Australia works
         the same way: most of its pools are built and run by local councils.
       </p>
+      <!-- Each chart is a <figure class="chart-block"> with an empty <div>.
+           The div's id (e.g. chart_isotype) is what the embed script at the
+           bottom of the page uses to place the chart. -->
       <!-- Chart 1: isotype of annual visits -->
       <figure class="chart-block">
        <div id="chart_isotype" class="chart"></div>
@@ -65,7 +93,9 @@
         Australia has about 2,100 public and publicly accessible pools. Most sit along the coast,
         where most Australians live, but even small outback towns often have one.
       </p>
-      <!-- Charts 3 and 4: dot map and grid bin map side by side -->
+      <!-- Charts 3 and 4: dot map and grid bin map side by side.
+           .grid-2 is a CSS grid with two columns, so the reader can compare
+           individual pools (left) with pool density (right). -->
       <div class="grid-2">
         <figure class="chart-block">
           <div id="chart_dotmap" class="chart"></div>
@@ -89,7 +119,8 @@
         about 1 in 4, live more than a 10-minute drive from a public pool. In Tasmania it is
         more than half of the population.
       </p>
-      <!-- Chart 6: choropleth (working) -->
+      <!-- Chart 6: choropleth. This is the only chart with a <figcaption>, which gives
+           the hover hint and the data source under the map. -->
       <figure class="chart-block">
         <div id="chart_choropleth" class="chart"></div>
         <figcaption>
@@ -158,13 +189,15 @@
         What does a well-served city look like? Brisbane City Council runs 22 pools. Use the filters
         to find the ones that are open in winter or have disability access.
       </p>
-      <!-- Chart 12: Brisbane dot map with filters -->
+      <!-- Chart 12: Brisbane dot map with filters. The checkboxes are not written in HTML;
+           Vega-Lite creates them from the "params" with "bind" in the spec. -->
       <figure class="chart-block">
         <div id="chart_brisbane" class="chart"></div>
       </figure>
     </section>
 
-    <!-- ============ CONCLUSION ============ -->
+    <!-- ============ CONCLUSION ============
+         Text-only section that wraps up the story; no chart. -->
     <section id="conclusion" class="wrap">
       <p class="section-num">08</p>
       <h2>Keeping Australia swimming</h2>
@@ -177,7 +210,8 @@
 
   </main>
 
-  <!-- ============ FOOTER: METADATA ============ -->
+  <!-- ============ FOOTER: METADATA ============
+       Author details, data sources with links, AI-use statement and currency note. -->
   <footer class="site-footer">
     <div class="wrap">
       <h2>About this page</h2>
@@ -218,13 +252,17 @@
     </div>
   </footer>
 
-  <!-- ============ EMBED CHARTS ============ -->
+  <!-- ============ EMBED CHARTS ============
+       This script runs after the page body loads, so every placeholder <div> already exists. -->
   <script>
-    // One line per chart: vegaEmbed("#div id", "spec file", options)
-    // actions: false hides the "..." menu and "Open in Vega Editor" link
+    // Options shared by every chart:
+    //   actions: false  hides the "..." menu (export / "Open in Vega Editor" links)
+    //   renderer: "svg" draws charts as SVG (sharp at any zoom, text stays selectable)
+    //                   instead of the default canvas
     const opts = { actions: false, renderer: "svg" };
 
-    // Add one line per chart as you build it: "#div id": "spec file"
+    // Lookup table: CSS selector of the placeholder div -> path of its Vega-Lite spec.
+    // Keeping it in one object means adding a chart is a single new line.
     const charts = {
       "#chart_choropleth": "js/map_access_choropleth.vg.json",
       "#chart_isotype": "js/isotype_visits.vg.json",
@@ -239,7 +277,13 @@
       "#chart_value": "js/bar_pool_value.vg.json",
       "#chart_brisbane": "js/map_brisbane_pools.vg.json",
     };
-    
+
+    // Loop over every [div, spec] pair and embed it.
+    // vegaEmbed fetches the JSON file, compiles Vega-Lite to Vega and renders it.
+    // It returns a Promise, so .catch(console.error) logs a failed chart (e.g. a typo
+    // in a spec or a missing data file) to the browser console without stopping the others.
+    // Note: the specs load data with relative URLs, so the page must be served over
+    // http (e.g. GitHub Pages or a local server), not opened as a file:// path.
     for (const [div, spec] of Object.entries(charts)) {
       vegaEmbed(div, spec, opts).catch(console.error);
     }
