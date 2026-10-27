@@ -206,28 +206,29 @@
       ]
     },
     {
-      "description": "Layer 4: annotation explaining the key insight (Tasmania)",
+      "description": "Layer 4: annotation explaining the key insight (Tasmania), right-aligned in the sea west of Tasmania so it is not cut off at the right edge",
       "data": {
         "values": [
           {
-            "lon": 151.5,
-            "lat": -43.2,
+            "lon": 144.0,
+            "lat": -41.4,
             "text": [
-              "More than half of Tasmanians have no",
-              "pool nearby, even though the state has",
-              "the most pools per person"
+              "More than half of Tasmanians",
+              "have no pool nearby, even though",
+              "the state has the most pools",
+              "per person"
             ]
           }
         ]
       },
       "mark": {
         "type": "text",
-        "align": "left",
+        "align": "right",
         "fontSize": 12,
         "fontStyle": "italic",
         "color": "#a3461a",
         "baseline": "top",
-        "dx": 4,
+        "dx": -4,
         "lineHeight": 16
       },
       "encoding": {
