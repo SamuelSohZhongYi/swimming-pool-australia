@@ -54,6 +54,191 @@
     },
     {
       "data": {
+        "values": [
+          {
+            "c": "Sydney",
+            "lon": 151.2,
+            "lat": -33.87,
+            "dx": 13,
+            "dy": 0,
+            "a": "left"
+          },
+          {
+            "c": "Melbourne",
+            "lon": 144.96,
+            "lat": -37.81,
+            "dx": 0,
+            "dy": 16,
+            "a": "center"
+          },
+          {
+            "c": "Brisbane",
+            "lon": 153.03,
+            "lat": -27.47,
+            "dx": 13,
+            "dy": 0,
+            "a": "left"
+          },
+          {
+            "c": "Perth",
+            "lon": 115.86,
+            "lat": -31.95,
+            "dx": -8,
+            "dy": 0,
+            "a": "right"
+          },
+          {
+            "c": "Adelaide",
+            "lon": 138.6,
+            "lat": -34.93,
+            "dx": -6,
+            "dy": 14,
+            "a": "right"
+          },
+          {
+            "c": "Darwin",
+            "lon": 130.84,
+            "lat": -12.46,
+            "dx": -6,
+            "dy": -8,
+            "a": "right"
+          },
+          {
+            "c": "Hobart",
+            "lon": 147.33,
+            "lat": -42.88,
+            "dx": 8,
+            "dy": 4,
+            "a": "left"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 10.5,
+        "fontWeight": 600,
+        "color": "#12263a",
+        "baseline": "middle",
+        "dx": {
+          "expr": "datum.dx"
+        },
+        "dy": {
+          "expr": "datum.dy"
+        },
+        "align": {
+          "expr": "datum.a"
+        },
+        "stroke": "white",
+        "strokeWidth": 3,
+        "strokeOpacity": 0.9
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "c"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "c": "Sydney",
+            "lon": 151.2,
+            "lat": -33.87,
+            "dx": 13,
+            "dy": 0,
+            "a": "left"
+          },
+          {
+            "c": "Melbourne",
+            "lon": 144.96,
+            "lat": -37.81,
+            "dx": 0,
+            "dy": 16,
+            "a": "center"
+          },
+          {
+            "c": "Brisbane",
+            "lon": 153.03,
+            "lat": -27.47,
+            "dx": 13,
+            "dy": 0,
+            "a": "left"
+          },
+          {
+            "c": "Perth",
+            "lon": 115.86,
+            "lat": -31.95,
+            "dx": -8,
+            "dy": 0,
+            "a": "right"
+          },
+          {
+            "c": "Adelaide",
+            "lon": 138.6,
+            "lat": -34.93,
+            "dx": -6,
+            "dy": 14,
+            "a": "right"
+          },
+          {
+            "c": "Darwin",
+            "lon": 130.84,
+            "lat": -12.46,
+            "dx": -6,
+            "dy": -8,
+            "a": "right"
+          },
+          {
+            "c": "Hobart",
+            "lon": 147.33,
+            "lat": -42.88,
+            "dx": 8,
+            "dy": 4,
+            "a": "left"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 10.5,
+        "fontWeight": 600,
+        "color": "#12263a",
+        "baseline": "middle",
+        "dx": {
+          "expr": "datum.dx"
+        },
+        "dy": {
+          "expr": "datum.dy"
+        },
+        "align": {
+          "expr": "datum.a"
+        }
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "c"
+        }
+      }
+    },
+    {
+      "data": {
         "url": "data/osm_public_pools.csv"
       },
       "transform": [
