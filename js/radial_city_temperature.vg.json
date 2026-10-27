@@ -3,7 +3,7 @@
   "description": "Chart 9. Radial charts (small multiples): average daily maximum temperature for each month in the eight capital cities. Months run clockwise from January at the top; the bar length shows temperature.",
   "title": {
     "text": "Darwin swims all year; Hobart has a short season",
-    "subtitle": "Average daily maximum temperature by month · months clockwise from January at the top · orange = 25 °C or warmer"
+    "subtitle": "Average daily maximum by month · January at the top, then clockwise · orange = 25 °C or warmer"
   },
   "data": {
     "url": "data/bom_capital_city_climate.csv",

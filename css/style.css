@@ -294,3 +294,49 @@ main section.wrap > .text { grid-column: 2; grid-row: 1 / span 2; align-self: st
 
 /* a little space between the last section and the footer */
 main { padding-bottom: 48px; }
+
+/* Side-by-side maps: line up the two captions at the same height.
+   subgrid makes both figures share the same two rows (chart row, caption row),
+   so the captions start on the same line even if one chart is taller. */
+.grid-2 { grid-template-rows: auto auto; }
+.grid-2 > figure {
+  display: grid;
+  grid-row: span 2;
+  grid-template-rows: subgrid;
+  row-gap: 0;
+}
+.grid-2 > figure > figcaption { align-self: start; }
+/* Line both captions up with the dot map's caption (just under its "Show:" menu).
+   1. The grid map has no menu, but Vega still adds an empty menu box with a top margin: hide it.
+   2. The grid map's legend hangs slightly lower than the dot map's menu, so we let the
+      grid map's picture overlap its own bottom padding by 12px. The legend itself is unchanged.
+   3. Both captions then start 14px under the dot map's menu. */
+.grid-2 .vega-bindings:empty { display: none; }
+#chart_binmap svg { display: block; margin-bottom: -12px; }
+.grid-2 > figure > figcaption { margin-top: 14px; }
+
+/* ================= Alignment clean-up =================
+   One shared grid for the whole page: a left column (headings, notes, labels)
+   that is (page width − 32px gap) ÷ 3.4 wide, and a right column for text and charts. */
+:root { --side: calc((100% - 32px) / 3.4); }
+
+/* 1. Section intro text starts level with the heading (not with the small number above it) */
+main section.wrap > .text { grid-row: 2; }
+main section.wrap > h2 { align-self: start; }
+
+/* 2. Vega puts 5px of padding around every chart. Pull the chart out by 5px on each side
+      so chart titles and axis labels line up exactly with the text and notes. */
+.chart { margin: -5px -5px 0; width: calc(100% + 10px); }
+.chart .vega-bindings { padding-left: 5px; }   /* menus and checkboxes stay on the text edge */
+
+/* 3. Note headings sit on the same line as the chart title beside them, at the same size */
+.note { padding-top: 0; }
+.note-kicker { font-size: 1.25rem; line-height: 1.2; margin-bottom: 0.6em !important; }
+section > .chart-block > figcaption::before { font-size: 1.25rem; line-height: 1.2; }
+
+/* 4. The three key numbers in the conclusion follow the same grid as the text above:
+      first number under the heading, the other two under the two text columns */
+.takeaways { grid-template-columns: var(--side) 1fr 1fr; }
+@media (max-width: 760px) {
+  .takeaways { grid-template-columns: 1fr; }
+}
