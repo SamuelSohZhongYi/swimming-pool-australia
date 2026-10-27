@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Chart 11. Bar chart: yearly economic, health and social value of Australia's aquatic facilities, compared with the one-off cost of replacing 500 ageing pools.",
   "title": {
-    "text": "Pools give back more than they cost",
+    "text": "Each year, pools return more than the one-off cost of replacing the oldest",
     "subtitle": "Billions of Australian dollars (RM ≈ 3 × AUD)"
   },
   "width": "container",

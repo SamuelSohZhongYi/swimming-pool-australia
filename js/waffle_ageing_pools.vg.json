@@ -2,8 +2,8 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Chart 10. Waffle chart: of every 100 public pools, 40 reach the end of their working life this decade.",
   "title": {
-    "text": "4 in 10 public pools are wearing out",
-    "subtitle": "Each square = 1% of Australia's ~1,300 public pools"
+    "text": "4 in 10 council pools are wearing out",
+    "subtitle": "Each square = 1% of Australia's ~1,300 council pools"
   },
   "width": 300,
   "height": 300,
