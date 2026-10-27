@@ -340,3 +340,25 @@ section > .chart-block > figcaption::before { font-size: 1.25rem; line-height: 1
 @media (max-width: 760px) {
   .takeaways { grid-template-columns: 1fr; }
 }
+
+/* ================= Two-paragraph columns =================
+   Intros, the hero lede and the wide "What to notice" captions are written as
+   two complete paragraphs. Each paragraph gets its own column, so no sentence
+   is split across columns (this replaces the newspaper-style column-count). */
+.text, .lede, section > .chart-block > figcaption {
+  column-count: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 32px;
+  align-items: start;
+}
+.text p, .lede p, section > .chart-block > figcaption p { margin: 0; }
+.text { margin-bottom: 28px; }
+.lede { margin-bottom: 1em; }
+/* The intro's first paragraph is the main point: make it a touch stronger */
+main section.wrap > .text p:first-child { color: var(--ink); }
+main section.wrap > .text p + p { color: var(--ink-soft); }
+
+@media (max-width: 760px) {
+  .text, .lede, section > .chart-block > figcaption { grid-template-columns: 1fr; row-gap: 0.8em; }
+}
