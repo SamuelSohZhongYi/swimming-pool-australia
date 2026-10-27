@@ -64,6 +64,10 @@
             "cell_lon",
             "cell_lat"
           ]
+        },
+        {
+          "calculate": "datum.pools >= 50 ? '50+' : datum.pools >= 25 ? '25–49' : datum.pools >= 10 ? '10–24' : datum.pools >= 5 ? '5–9' : datum.pools >= 2 ? '2–4' : '1'",
+          "as": "band"
         }
       ],
       "mark": {
@@ -83,17 +87,17 @@
           "type": "quantitative"
         },
         "color": {
-          "field": "pools",
-          "type": "quantitative",
+          "field": "band",
+          "type": "ordinal",
           "title": "Pools per cell",
           "scale": {
-            "type": "threshold",
             "domain": [
-              2,
-              5,
-              10,
-              25,
-              50
+              "1",
+              "2–4",
+              "5–9",
+              "10–24",
+              "25–49",
+              "50+"
             ],
             "range": [
               "#d6e8f5",
@@ -107,7 +111,11 @@
           "legend": {
             "orient": "bottom",
             "direction": "horizontal",
-            "labelExpr": "datum.label"
+            "symbolType": "square",
+            "symbolSize": 160,
+            "columns": 6,
+            "columnPadding": 8,
+            "labelFontSize": 11
           }
         },
         "tooltip": [
@@ -126,6 +134,191 @@
             "format": ".1f"
           }
         ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "c": "Sydney",
+            "lon": 151.2,
+            "lat": -33.87,
+            "dx": 13,
+            "dy": 0,
+            "a": "left"
+          },
+          {
+            "c": "Melbourne",
+            "lon": 144.96,
+            "lat": -37.81,
+            "dx": 0,
+            "dy": 16,
+            "a": "center"
+          },
+          {
+            "c": "Brisbane",
+            "lon": 153.03,
+            "lat": -27.47,
+            "dx": 13,
+            "dy": 0,
+            "a": "left"
+          },
+          {
+            "c": "Perth",
+            "lon": 115.86,
+            "lat": -31.95,
+            "dx": -8,
+            "dy": 0,
+            "a": "right"
+          },
+          {
+            "c": "Adelaide",
+            "lon": 138.6,
+            "lat": -34.93,
+            "dx": -6,
+            "dy": 14,
+            "a": "right"
+          },
+          {
+            "c": "Darwin",
+            "lon": 130.84,
+            "lat": -12.46,
+            "dx": -6,
+            "dy": -8,
+            "a": "right"
+          },
+          {
+            "c": "Hobart",
+            "lon": 147.33,
+            "lat": -42.88,
+            "dx": 8,
+            "dy": 4,
+            "a": "left"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 10.5,
+        "fontWeight": 600,
+        "color": "#12263a",
+        "baseline": "middle",
+        "dx": {
+          "expr": "datum.dx"
+        },
+        "dy": {
+          "expr": "datum.dy"
+        },
+        "align": {
+          "expr": "datum.a"
+        },
+        "stroke": "white",
+        "strokeWidth": 3,
+        "strokeOpacity": 0.9
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "c"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "c": "Sydney",
+            "lon": 151.2,
+            "lat": -33.87,
+            "dx": 13,
+            "dy": 0,
+            "a": "left"
+          },
+          {
+            "c": "Melbourne",
+            "lon": 144.96,
+            "lat": -37.81,
+            "dx": 0,
+            "dy": 16,
+            "a": "center"
+          },
+          {
+            "c": "Brisbane",
+            "lon": 153.03,
+            "lat": -27.47,
+            "dx": 13,
+            "dy": 0,
+            "a": "left"
+          },
+          {
+            "c": "Perth",
+            "lon": 115.86,
+            "lat": -31.95,
+            "dx": -8,
+            "dy": 0,
+            "a": "right"
+          },
+          {
+            "c": "Adelaide",
+            "lon": 138.6,
+            "lat": -34.93,
+            "dx": -6,
+            "dy": 14,
+            "a": "right"
+          },
+          {
+            "c": "Darwin",
+            "lon": 130.84,
+            "lat": -12.46,
+            "dx": -6,
+            "dy": -8,
+            "a": "right"
+          },
+          {
+            "c": "Hobart",
+            "lon": 147.33,
+            "lat": -42.88,
+            "dx": 8,
+            "dy": 4,
+            "a": "left"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 10.5,
+        "fontWeight": 600,
+        "color": "#12263a",
+        "baseline": "middle",
+        "dx": {
+          "expr": "datum.dx"
+        },
+        "dy": {
+          "expr": "datum.dy"
+        },
+        "align": {
+          "expr": "datum.a"
+        }
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "c"
+        }
       }
     }
   ],
