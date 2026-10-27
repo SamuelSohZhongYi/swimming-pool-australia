@@ -15,7 +15,7 @@
   --font-head: "Fraunces", Georgia, serif;
   --font-body: "Public Sans", system-ui, -apple-system, sans-serif;
 
-  --measure: 66ch;         /* comfortable line length for body text */
+  --measure: 58ch;         /* about 9–10 words per line (Typography notes: ~60 characters) */
   --page: 1100px;          /* max page width: fits a small laptop without side-scrolling */
 }
 
@@ -72,11 +72,11 @@ a { color: var(--water); }
 /* ---------- Hero ---------- */
 .hero {
   background: var(--water-light);
-  padding: 96px 0 0;
-  margin-bottom: 72px;
+  padding: 64px 0 0;
+  margin-bottom: 48px;
 }
 .lede { font-size: 1.3rem; line-height: 1.5; margin: 0 0 1em; }
-.byline { color: var(--ink-soft); font-size: 0.95rem; margin: 0 0 56px; }
+.byline { color: var(--ink-soft); font-size: 0.95rem; margin: 0 0 40px; }
 
 /* Lane rope: the dashed red-and-white rope that divides pool lanes */
 .lane-rope {
@@ -86,9 +86,9 @@ a { color: var(--water); }
 }
 
 /* ---------- Sections ---------- */
-main section { margin-bottom: 96px; }
+main section { margin-bottom: 56px; }
 
-.chart-block { margin: 0 0 40px; }
+.chart-block { margin: 0 0 24px; }
 .chart { width: 100%; min-height: 120px; }
 
 figcaption {
@@ -102,7 +102,7 @@ figcaption {
 .grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  gap: 32px;
 }
 @media (max-width: 760px) {
   .grid-2 { grid-template-columns: 1fr; }
@@ -156,3 +156,141 @@ figcaption {
 }
 .vega-bind-name { font-weight: 600; margin-right: 4px; }
 .vega-bindings select { font: inherit; padding: 2px 6px; }
+
+/* ---------- Story rows: side note on the left, chart on the right ----------
+   Fills the space beside charts that are narrower than the page,
+   and keeps note lines short (well under 10 words). */
+.story-row {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) 2.4fr;
+  gap: 32px;
+  align-items: start;
+  margin-bottom: 24px;
+}
+.story-row .chart-block { margin-bottom: 0; }
+
+.note {
+  font-size: 1rem;
+  line-height: 1.55;
+  border-left: 3px solid var(--water);
+  padding-left: 16px;
+  margin-top: 8px;
+}
+.note p { margin: 0 0 0.8em; }
+.note-kicker {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--ink);
+}
+
+/* ---------- Conclusion: three key numbers side by side ---------- */
+.takeaways {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 8px;
+}
+.takeaway { border-top: 3px solid var(--sand); padding-top: 12px; }
+.takeaway p { margin: 0; max-width: 30ch; }
+.big-number {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 2.2rem;
+  color: var(--water);
+  line-height: 1.1;
+  margin-bottom: 6px !important;
+}
+
+@media (max-width: 760px) {
+  .story-row, .takeaways { grid-template-columns: 1fr; }
+}
+
+/* ---------- Short lines: at most ~10 words per line ----------
+   About 10 words fit in roughly 30em, whatever the font size.
+   On wide screens, longer text is split into newspaper-style columns,
+   so each line stays short AND the full page width is used (no empty right side). */
+.text, .lede {
+  max-width: none;
+  column-count: 2;
+  column-gap: 32px;
+}
+.lede { font-size: 1.5rem; }
+/* captions under full-width charts: a "What to notice" label in the left column
+   (same left/right split as the notes), and the caption in two short columns on the right */
+section > .chart-block > figcaption {
+  position: relative;
+  max-width: none;
+  padding-left: calc((100% - 32px) / 3.4 + 32px);
+  column-count: 2;
+  column-gap: 32px;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+section > .chart-block > figcaption::before {
+  content: "What to notice";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--ink);
+  border-left: 3px solid var(--water);
+  padding-left: 16px;
+}
+/* captions under half-width charts: one short column */
+.grid-2 figcaption, .story-row figcaption {
+  column-count: 1;
+  max-width: 24em;
+  font-size: 0.9rem;
+}
+
+/* ---------- Section opening: number + heading on the left, intro text on the right ----------
+   Uses the same left/right split as .story-row, so every section lines up
+   on one vertical axis and the space beside the heading is not left empty. */
+main section.wrap {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) 2.4fr;
+  column-gap: 32px;
+  align-content: start;
+}
+main section.wrap > * { grid-column: 1 / -1; }
+main section.wrap > .section-num { grid-column: 1; grid-row: 1; }
+main section.wrap > h2 { grid-column: 1; grid-row: 2; margin-bottom: 28px; }
+main section.wrap > .text { grid-column: 2; grid-row: 1 / span 2; align-self: start; margin-bottom: 28px; }
+.story-row > * { min-width: 0; }
+
+/* Waffle row: note | narrow waffle | second note */
+.story-row.trio { grid-template-columns: minmax(220px, 1fr) auto minmax(220px, 1fr); }
+
+/* The note fills the full height beside its chart; the key number sits at the bottom */
+.note { display: flex; flex-direction: column; align-self: stretch; margin-top: 0; padding-top: 8px; }
+.note-stat { margin-top: auto !important; padding-top: 12px; color: var(--ink-soft); }
+.note-stat .big-number { display: block; font-size: 2rem; }
+
+/* ---------- Footer: about + AI on the left, sources in two columns on the right ---------- */
+.footer-grid {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) 2.4fr;
+  gap: 32px;
+}
+.footer-grid h3:first-child { margin-top: 0; }
+.site-footer p { max-width: 30em; }
+.site-footer .small { max-width: 24em; }
+.sources { column-count: 2; column-gap: 32px; max-width: none; margin-top: 0; }
+.sources li { break-inside: avoid; }
+
+@media (max-width: 760px) {
+  main section.wrap { display: block; }
+  .footer-grid, .story-row.trio { grid-template-columns: 1fr; }
+  .text, .lede, figcaption, .sources {
+    column-count: 1 !important;
+    max-width: 30em;
+  }
+  section > .chart-block > figcaption { padding-left: 0; }
+  section > .chart-block > figcaption::before { position: static; display: block; margin-bottom: 6px; }
+}
+
+/* a little space between the last section and the footer */
+main { padding-bottom: 48px; }

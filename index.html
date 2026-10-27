@@ -59,8 +59,10 @@
   </header>
 
   <!-- <main> holds the story. Each <section> has the same pattern:
-       section number, heading, a short paragraph, then one or more <figure> charts.
-       class="wrap" limits the width so lines of text stay easy to read. -->
+       section number, heading, a short paragraph, then charts.
+       Charts that do not need the full page width sit in a .story-row:
+       a side note on the left (what to look for) and the chart on the right,
+       so the page has no large empty areas. class="wrap" limits the width. -->
   <main>
 
     <!-- ============ 1. A SWIMMING NATION ============ -->
@@ -70,19 +72,35 @@
       <p class="text">
         Swimming is one of Australia's favourite ways to stay active. In Malaysia, a public pool is
         usually a <em>kolam renang awam</em> run by the local council (<em>majlis</em>). Australia works
-        the same way: most of its pools are built and run by local councils.
+        the same way: most of its pools are built and run by local councils, and they are busy all year.
       </p>
-      <!-- Each chart is a <figure class="chart-block"> with an empty <div>.
-           The div's id (e.g. chart_isotype) is what the embed script at the
-           bottom of the page uses to place the chart. -->
-      <!-- Chart 1: isotype of annual visits -->
+      <!-- Chart 1: isotype of annual visits (full width, caption underneath) -->
       <figure class="chart-block">
-       <div id="chart_isotype" class="chart"></div>
+        <div id="chart_isotype" class="chart"></div>
+        <figcaption>
+          New South Wales and Victoria make up more than half of all visits (57%),
+          because most Australians live in these two states.
+        </figcaption>
       </figure>
-      <!-- Chart 2: bump chart of activity ranks -->
-      <figure class="chart-block">
-        <div id="chart_bump" class="chart"></div>
-      </figure>
+      <!-- Chart 2: bump chart, with a side note on the left -->
+      <div class="story-row">
+        <aside class="note">
+          <p class="note-kicker">Always near the top</p>
+          <p>
+            Each year, Australians are asked which sports and activities they did.
+            Swimming has stayed in the <strong>top five</strong> for nearly a decade,
+            behind walking and the gym.
+          </p>
+          <p>
+            It peaked at <strong>third place in 2022–23</strong>. From 2023 the survey moved
+            online, so the newer ranks start a fresh line and are not joined to the old ones.
+          </p>
+          <p class="note-stat"><span class="big-number">#3</span>swimming's best rank, in 2022–23</p>
+        </aside>
+        <figure class="chart-block">
+          <div id="chart_bump" class="chart"></div>
+        </figure>
+      </div>
     </section>
 
     <!-- ============ 2. WHERE ARE THE POOLS? ============ -->
@@ -91,23 +109,44 @@
       <h2>Where are the pools?</h2>
       <p class="text">
         Australia has about 2,100 public and publicly accessible pools. Most sit along the coast,
-        where most Australians live, but even small outback towns often have one.
+        where most Australians live, but even small outback towns often have one. The two maps
+        below show the same pools in two different ways.
       </p>
-      <!-- Charts 3 and 4: dot map and grid bin map side by side.
-           .grid-2 is a CSS grid with two columns, so the reader can compare
-           individual pools (left) with pool density (right). -->
+      <!-- Charts 3 and 4: dot map and grid bin map side by side, each with a short caption -->
       <div class="grid-2">
         <figure class="chart-block">
           <div id="chart_dotmap" class="chart"></div>
+          <figcaption>
+            Each dot is one pool found in OpenStreetMap, a free map made by volunteers.
+            It includes about four in five of Australia's pools. Use the menu to show one type.
+          </figcaption>
         </figure>
         <figure class="chart-block">
           <div id="chart_binmap" class="chart"></div>
+          <figcaption>
+            In cities the dots pile up and hide each other. Counting pools in squares about
+            100 km wide shows the busiest areas clearly: Sydney and Melbourne.
+          </figcaption>
         </figure>
       </div>
-      <!-- Chart 5: proportional symbol map -->
-      <figure class="chart-block">
-        <div id="chart_symbolmap" class="chart"></div>
-      </figure>
+      <!-- Chart 5: proportional symbol map, with a side note on the left -->
+      <div class="story-row">
+        <aside class="note">
+          <p class="note-kicker">Who owns the pools?</p>
+          <p>
+            About <strong>6 in 10</strong> public pools (1,305) are built and run by councils.
+            The other 814 are private pools, such as gyms and swim schools, that anyone can pay to use.
+          </p>
+          <p>
+            Victoria is almost an even split. Canberra (ACT) is the only place with
+            <strong>more private pools than council pools</strong>.
+          </p>
+          <p class="note-stat"><span class="big-number">1,305 vs 814</span>council pools vs private pools open to the public</p>
+        </aside>
+        <figure class="chart-block">
+          <div id="chart_symbolmap" class="chart"></div>
+        </figure>
+      </div>
     </section>
 
     <!-- ============ 3. WHO MISSES OUT? ============ -->
@@ -119,15 +158,31 @@
         about 1 in 4, live more than a 10-minute drive from a public pool. In Tasmania it is
         more than half of the population.
       </p>
-      <!-- Chart 6: choropleth. This is the only chart with a <figcaption>, which gives
-           the hover hint and the data source under the map. -->
-      <figure class="chart-block">
-        <div id="chart_choropleth" class="chart"></div>
-        <figcaption>
-          Hover over a state for the number of people affected.
-          Source: Royal Life Saving Society – Australia (2025), <em>State of Australian Aquatic Facilities</em>.
-        </figcaption>
-      </figure>
+      <!-- Chart 6: choropleth with a side note; the caption gives the hover hint and the source -->
+      <div class="story-row">
+        <aside class="note">
+          <p class="note-kicker">A Tasmanian puzzle</p>
+          <p>
+            Tasmania has the most pools for its population: about one for every
+            <strong>7,700 people</strong>, against one per 13,000 nationally.
+          </p>
+          <p>
+            Yet half of Tasmanians live far from one, because people are spread across many
+            small towns. Canberra, a compact planned city, has the best access.
+          </p>
+          <p>
+            The gap is growing as cities spread outwards faster than new pools are built.
+          </p>
+          <p class="note-stat"><span class="big-number">7.3 million</span>Australians may have no pool within 10 minutes by 2032</p>
+        </aside>
+        <figure class="chart-block">
+          <div id="chart_choropleth" class="chart"></div>
+          <figcaption>
+            Hover over a state for the number of people affected.
+            Source: Royal Life Saving Society – Australia (2025), <em>State of Australian Aquatic Facilities</em>.
+          </figcaption>
+        </figure>
+      </div>
     </section>
 
     <!-- ============ 4. WHO SWIMS? ============ -->
@@ -138,14 +193,31 @@
         About 15% of Australian adults swim at least once a year, roughly 3.5 million people.
         Swimming stays popular at every age until 65, when it drops sharply.
       </p>
-      <!-- Chart 7: heatmap -->
+      <!-- Chart 7: heatmap (full width, caption underneath) -->
       <figure class="chart-block">
         <div id="chart_heatmap" class="chart"></div>
+        <figcaption>
+          Darker cells mean more people in that age group take part. Follow the orange row
+          to see swimming: steady from teenagers to 64, then a drop after 65.
+        </figcaption>
       </figure>
-      <!-- Chart 8: trend line -->
-      <figure class="chart-block">
-        <div id="chart_trend" class="chart"></div>
-      </figure>
+      <!-- Chart 8: trend line, with a side note on the left -->
+      <div class="story-row">
+        <aside class="note">
+          <p class="note-kicker">Women swim more</p>
+          <p>
+            In every year since 2016, a larger share of women than men went swimming.
+          </p>
+          <p>
+            Swimming grew more popular around the COVID-19 years, and the gap
+            between women and men has stayed about the same.
+          </p>
+          <p class="note-stat"><span class="big-number">1 in 5</span>women went swimming in 2022–23, the highest so far</p>
+        </aside>
+        <figure class="chart-block">
+          <div id="chart_trend" class="chart"></div>
+        </figure>
+      </div>
     </section>
 
     <!-- ============ 5. WHEN DO THEY SWIM? ============ -->
@@ -156,10 +228,28 @@
         Unlike Malaysia, most of Australia has real winters. Many outdoor pools close for months,
         while in tropical Darwin it is warm enough to swim all year.
       </p>
-      <!-- Chart 9: radial small multiples -->
-      <figure class="chart-block">
-        <div id="chart_radial" class="chart"></div>
-      </figure>
+      <!-- Chart 9: radial small multiples, with a side note explaining how to read them -->
+      <div class="story-row">
+        <aside class="note">
+          <p class="note-kicker">How to read the circles</p>
+          <p>
+            Each circle is one year in a capital city. The 12 wedges are the months,
+            starting with January at the top and going clockwise.
+          </p>
+          <p>
+            Longer wedges mean hotter days. <strong>Orange</strong> marks months with an average
+            top temperature of 25&nbsp;°C or more.
+          </p>
+          <p>
+            Darwin is warm all year. Hobart never reaches 25&nbsp;°C on average,
+            so its outdoor pools have a short season.
+          </p>
+          <p class="note-stat"><span class="big-number">12 vs 0</span>months averaging 25&nbsp;°C or more: Darwin vs Hobart</p>
+        </aside>
+        <figure class="chart-block">
+          <div id="chart_radial" class="chart"></div>
+        </figure>
+      </div>
     </section>
 
     <!-- ============ 6. AGEING POOLS ============ -->
@@ -171,13 +261,39 @@
         will reach the end of their working life this decade, and replacing them would cost about
         $8 billion (about RM 24 billion).
       </p>
-      <!-- Chart 10: waffle -->
-      <figure class="chart-block">
-        <div id="chart_waffle" class="chart"></div>
-      </figure>
-      <!-- Chart 11: value bar chart -->
+      <!-- Chart 10: waffle. The waffle is narrow, so this row has three columns:
+           note on the left, waffle in the middle, key number on the right. -->
+      <div class="story-row trio">
+        <aside class="note">
+          <p class="note-kicker">Built for another generation</p>
+          <p>
+            Many pools opened in the 1960s and 1970s, and a pool usually lasts about 50 years.
+          </p>
+          <p>
+            Replacing even a basic outdoor pool costs at least $10 million,
+            so some councils have considered closing pools instead.
+          </p>
+          
+        </aside>
+        <figure class="chart-block">
+          <div id="chart_waffle" class="chart"></div>
+        </figure>
+        <aside class="note">
+          <p class="note-kicker">The price tag</p>
+          <p>
+            When an old pool closes, the next one can be far away,
+            especially in country towns.
+          </p>
+          <p class="note-stat"><span class="big-number">RM 30 million+</span>to replace just one basic outdoor pool</p>
+        </aside>
+      </div>
+      <!-- Chart 11: value bar chart (full width, caption underneath) -->
       <figure class="chart-block">
         <div id="chart_value" class="chart"></div>
+        <figcaption>
+          Every year, pools return about $9.1 billion through jobs, better health and stronger
+          communities. That is more than the one-off $8 billion needed to replace the oldest pools.
+        </figcaption>
       </figure>
     </section>
 
@@ -189,15 +305,29 @@
         What does a well-served city look like? Brisbane City Council runs 22 pools. Use the filters
         to find the ones that are open in winter or have disability access.
       </p>
-      <!-- Chart 12: Brisbane dot map with filters. The checkboxes are not written in HTML;
-           Vega-Lite creates them from the "params" with "bind" in the spec. -->
-      <figure class="chart-block">
-        <div id="chart_brisbane" class="chart"></div>
-      </figure>
+      <!-- Chart 12: Brisbane map with filters, with a side note on the left.
+           The checkboxes are not written in HTML; Vega-Lite creates them from the "params" in the spec. -->
+      <div class="story-row">
+        <aside class="note">
+          <p class="note-kicker">A well-served city</p>
+          <p>
+            Of the 22 pools, <strong>18</strong> stay open in winter and
+            <strong>16</strong> can be reached by public transport.
+          </p>
+          <p>
+            Tick the boxes under the map to find pools that match your needs.
+            Hover over a pool to see its opening hours.
+          </p>
+          <p class="note-stat"><span class="big-number">20 of 22</span>Brisbane council pools have disability access</p>
+        </aside>
+        <figure class="chart-block">
+          <div id="chart_brisbane" class="chart"></div>
+        </figure>
+      </div>
     </section>
 
     <!-- ============ CONCLUSION ============
-         Text-only section that wraps up the story; no chart. -->
+         Text-only section that wraps up the story, with three key numbers side by side. -->
     <section id="conclusion" class="wrap">
       <p class="section-num">08</p>
       <h2>Keeping Australia swimming</h2>
@@ -206,6 +336,20 @@
         Keeping them open, and building new ones where people have none nearby, is one of the
         country's quiet but important challenges.
       </p>
+      <div class="takeaways">
+        <div class="takeaway">
+          <p class="big-number">421 million</p>
+          <p>pool visits every year: pools are part of everyday life.</p>
+        </div>
+        <div class="takeaway">
+          <p class="big-number">1 in 4</p>
+          <p>Australians have no public pool within a 10-minute drive.</p>
+        </div>
+        <div class="takeaway">
+          <p class="big-number">4 in 10</p>
+          <p>public pools need replacing by 2030, at a cost of about $8 billion.</p>
+        </div>
+      </div>
     </section>
 
   </main>
@@ -215,10 +359,23 @@
   <footer class="site-footer">
     <div class="wrap">
       <h2>About this page</h2>
+      <!-- .footer-grid: author and AI note on the left, sources list on the right -->
+      <div class="footer-grid">
+      <div>
       <p>
         Created by <strong>Samuel Soh Zhong Yi</strong> (Student ID 34076808) for FIT3179 Data Visualisation 2,
         Monash University Malaysia. Published October 2026.
       </p>
+
+      <h3>Use of AI</h3>
+      <p>
+        Claude (Anthropic) was used to help locate and clean datasets, draft Vega-Lite specifications
+        and check grammar. All design decisions and final text were reviewed by the author.
+      </p>
+
+      <p class="small">Currency conversions use about RM 3 per AUD 1 (October 2026).</p>
+      </div>
+      <div>
 
       <h3>Data sources</h3>
       <ul class="sources">
@@ -241,14 +398,8 @@
         <li>State boundaries: rowanhogan/australian-states, based on ABS boundaries.
           <a href="https://github.com/rowanhogan/australian-states">github.com</a></li>
       </ul>
-
-      <h3>Use of AI</h3>
-      <p>
-        Claude (Anthropic) was used to help locate and clean datasets, draft Vega-Lite specifications
-        and check grammar. All design decisions and final text were reviewed by the author.
-      </p>
-
-      <p class="small">Currency conversions use about RM 3 per AUD 1 (October 2026).</p>
+      </div>
+      </div>
     </div>
   </footer>
 
